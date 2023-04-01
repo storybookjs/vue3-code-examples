@@ -1,4 +1,3 @@
-// .storybook/withVeutifyTheme.decorator.js
 import { h , shallowReactive} from 'vue';
 import StoryWrapper from './VuetifyAppWrapper.vue';
 
