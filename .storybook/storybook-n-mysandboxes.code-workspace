@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../remote-sb/new-sb/storybook.worktrees/chaks/vue3-source-fix"
+		}
+	],
+	"settings": {}
+}
