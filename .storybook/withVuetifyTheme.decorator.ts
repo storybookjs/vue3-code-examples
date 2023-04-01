@@ -1,3 +1,4 @@
+// This file is a decorator that wraps the story in a VuetifyAppWrapper
 import { h , shallowReactive} from 'vue';
 import StoryWrapper from './VuetifyAppWrapper.vue';
 

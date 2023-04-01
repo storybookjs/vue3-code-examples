@@ -3048,6 +3048,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@storybook/core-client@npm:7.0.0-rc.11":
+  version: 7.0.0-rc.11
+  resolution: "@storybook/core-client@npm:7.0.0-rc.11"
+  dependencies:
+    "@storybook/client-logger": 7.0.0-rc.11
+    "@storybook/preview-api": 7.0.0-rc.11
+  checksum: 9571d154de27baf675ae10f6aa57718db5b5d62399b70f9b8848664b878eb57951d985b4c68afd56f77d6c195f3a8e4294b0e0c557f525b158f6fe88b004031e
+  languageName: node
+  linkType: hard
+
 "@storybook/core-common@npm:7.0.0":
   version: 7.0.0
   resolution: "@storybook/core-common@npm:7.0.0"
@@ -3742,9 +3752,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/vue3@portal:./code/renderers/vue3::locator=vue3-storybook-examples%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@storybook/vue3@portal:./code/renderers/vue3::locator=vue3-storybook-examples%40workspace%3A."
+"@storybook/vue3@npm:7.0.0-rc.11":
+  version: 7.0.0-rc.11
+  resolution: "@storybook/vue3@npm:7.0.0-rc.11"
+  dependencies:
+    "@storybook/core-client": 7.0.0-rc.11
+    "@storybook/docs-tools": 7.0.0-rc.11
+    "@storybook/global": ^5.0.0
+    "@storybook/preview-api": 7.0.0-rc.11
+    "@storybook/types": 7.0.0-rc.11
+    ts-dedent: ^2.0.0
+    type-fest: 2.19.0
+  peerDependencies:
+    vue: ^3.0.0
+  checksum: bea5f0ed2a7fe462fd2c9a060bb2ef76fbafd67f44a91504287228729233ea6c8b79c6e4b4ad2c0c798a12f3a40516ccef3620955114ff8839b938fb34aefe81
+  languageName: node
+  linkType: hard
+
+"@storybook/vue3@npm:^7.0.0-rc.9":
+  version: 7.0.0
+  resolution: "@storybook/vue3@npm:7.0.0"
   dependencies:
     "@storybook/core-client": 7.0.0
     "@storybook/docs-tools": 7.0.0
@@ -3755,8 +3782,9 @@ __metadata:
     type-fest: 2.19.0
   peerDependencies:
     vue: ^3.0.0
+  checksum: d45a068d908adc91dc858a5ae00e177c6ea94561905cf54857cadbf0f0e52577c4ec05ae04c1fa97cd9315c112c7477ee61633609a4fe3abc2852e068c0089fe
   languageName: node
-  linkType: soft
+  linkType: hard
 
 "@testing-library/dom@npm:^8.3.0":
   version: 8.20.0

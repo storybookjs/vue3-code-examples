@@ -42,7 +42,4 @@
   "resolutions": {
     "@storybook/vue3": "portal:./code/renderers/vue3"
   }
-  ,"stackblitz": {
-    "startCommand": "yarn storybook"
-  }
 }
