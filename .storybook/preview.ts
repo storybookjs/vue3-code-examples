@@ -1,4 +1,5 @@
 import  { type Preview , setup }  from '@storybook/vue3';
+import { App } from 'vue'
 
 import vuetify from '../src/plugins/vuetify'
 import { loadFonts } from '../src/plugins/webfontloader'
@@ -19,8 +20,7 @@ const preview: Preview = {
   },
 };
 
-setup((app:any) => {
-  console.log('setup preview',vuetify)
+setup((app:App) => {
   loadFonts();
   app.use(vuetify);
 })

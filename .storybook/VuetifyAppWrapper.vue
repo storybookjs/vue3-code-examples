@@ -11,10 +11,6 @@
     props: {
       themeName: String,
     },
-    setup(props) {
-        console.log('VuetifyAppWrapper.vue props:', props.themeName )
-      return { props };
-    },
   };
 </script>
 <style>
