@@ -21,7 +21,7 @@ const props=defineProps<{
               width="100%"
             >
             <v-card-actions>
-              <v-btn>Click me !</v-btn>
+              <v-btn>{{  $translate('greetings.hello') }} </v-btn>
             </v-card-actions>
           </v-card> 
 </template>

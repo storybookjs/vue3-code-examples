@@ -1,3 +1,3 @@
 <template>
-  <global-button v-bind="$props" />
+  <global-button />
 </template>

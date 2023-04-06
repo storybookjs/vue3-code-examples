@@ -7866,7 +7866,9 @@ var render = (props, context) => {
   }
   return (0, import_vue2.h)(Component, props, generateSlots(context));
 };
-var setupFunction = (_app) => {
+var setupFunctions = /* @__PURE__ */ new Set();
+var runSetupFunctions = (app, storyContext) => {
+  setupFunctions.forEach((fn) => fn(app, storyContext));
 };
 var map = /* @__PURE__ */ new Map();
 function renderToCanvas({ storyFn, forceRemount, showMain, showException, storyContext, id }, canvasElement) {
@@ -7895,7 +7897,7 @@ function renderToCanvas({ storyFn, forceRemount, showMain, showException, storyC
     }
   });
   vueApp.config.errorHandler = (e) => showException(e);
-  setupFunction(vueApp);
+  runSetupFunctions(vueApp, storyContext);
   vueApp.mount(canvasElement);
   showMain();
   return () => {

@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
-import { createApp, h, isReactive, reactive } from 'vue';
+import type { App } from 'vue';
+import { createApp, h, reactive, isReactive } from 'vue';
 import type { RenderContext, ArgsStoryFn } from '@storybook/types';
 import type { Args, StoryContext } from '@storybook/csf';
 
@@ -16,9 +17,18 @@ export const render: ArgsStoryFn<VueRenderer> = (props, context) => {
   return h(Component, props, generateSlots(context));
 };
 
-let setupFunction = (_app: any) => {};
-export const setup = (fn: (app: any) => void) => {
-  setupFunction = fn;
+// set of setup functions that will be called when story is created
+const setupFunctions = new Set<(app: App, storyContext?: StoryContext<VueRenderer>) => void>();
+/** add a setup function to set that will be call when story is created a d
+ *
+ * @param fn
+ */
+export const setup = (fn: (app: App, storyContext?: StoryContext<VueRenderer>) => void) => {
+  setupFunctions.add(fn);
+};
+
+const runSetupFunctions = (app: App, storyContext: StoryContext<VueRenderer>) => {
+  setupFunctions.forEach((fn) => fn(app, storyContext));
 };
 
 const map = new Map<
@@ -64,8 +74,9 @@ export function renderToCanvas(
       };
     },
   });
+
   vueApp.config.errorHandler = (e: unknown) => showException(e as Error);
-  setupFunction(vueApp);
+  runSetupFunctions(vueApp, storyContext);
   vueApp.mount(canvasElement);
 
   showMain();

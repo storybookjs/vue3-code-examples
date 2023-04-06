@@ -3,7 +3,7 @@ import {
   render,
   renderToCanvas,
   setup
-} from "./chunk-W2HBSRST.mjs";
+} from "./chunk-BC6D4WSH.mjs";
 
 // src/globals.ts
 import { global } from "@storybook/global";
