@@ -18,5 +18,5 @@ implementation of third party ui library like vuetify using global decorator
 # vue3 plugin examples 
 having multiple plugin without overridding the previous one
 
-# source snipets
+# source snippets
 you can test on all the stories 
