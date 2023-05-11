@@ -23,6 +23,7 @@ import {
   htmlEventAttributeToVueEventAttribute,
   omitEvent,
   evalExp,
+  replaceValueWithRef,
   generateExpression,
 } from './utils';
 
@@ -62,7 +63,11 @@ export function generateAttributesSource(
 ): string {
   return Object.keys(tempArgs)
     .map((key: any) => {
-      return evalExp(tempArgs[key].loc.source.replace(/\$props/g, 'args'), omitEvent(args));
+      const source = tempArgs[key].loc.source.replace(/\$props/g, 'args');
+      const argKey = (tempArgs[key] as DirectiveNode).arg?.loc.source;
+      return byRef && argKey
+        ? replaceValueWithRef(source, args, argKey)
+        : evalExp(source, omitEvent(args));
     })
     .join(' ');
 }
@@ -289,7 +294,7 @@ export function generateSource(context: StoryContext<Renderer>) {
 
   const withScript = context?.parameters?.docs?.source?.withScriptSetup || false;
   const generatedScript = withScript ? generateScriptSetup(args, argTypes, storyComponents) : '';
-  const generatedTemplate = generateTemplateSource(storyComponents, context);
+  const generatedTemplate = generateTemplateSource(storyComponents, context, withScript);
 
   if (generatedTemplate) {
     const source = `${generatedScript}\n <template>\n ${generatedTemplate} \n</template>`;

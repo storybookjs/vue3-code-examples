@@ -60,7 +60,7 @@ export const CustomRender: Story = {
     setup() {
       return { args };
     },
-    template: `<MySlotComponent :label="args.label" v-slot="slotProps">
+    template: `<MySlotComponent v-bind="args" v-slot="slotProps">
   	              {{ slotProps.text }}, {{ slotProps.year }}
               </MySlotComponent>`,
   }),
@@ -73,7 +73,7 @@ export const CustomRenderUsingFunctionSlot: Story = {
     setup() {
       return { args };
     },
-    template: `<MySlotComponent :label="args.label" v-slot="slotProps">
+    template: `<MySlotComponent v-bind="args" v-slot="slotProps">
   	            {{args.default(slotProps)}}
               </MySlotComponent>`,
   }),

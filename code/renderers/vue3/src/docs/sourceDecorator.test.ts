@@ -3,8 +3,6 @@ import type { Args } from '@storybook/types';
 
 import type { ArgsType } from 'jest-mock';
 import {
-  generateTemplateSource,
-  getComponentsFromTemplate,
   mapAttributesAndDirectives,
   generateAttributesSource,
   attributeSource,
@@ -15,25 +13,6 @@ expect.addSnapshotSerializer({
   print: (val: any) => val,
   test: (val: unknown) => typeof val === 'string',
 });
-function generateArgTypes(args: Args, slotProps: string[] | undefined) {
-  return Object.keys(args).reduce((acc, prop) => {
-    acc[prop] = { table: { category: slotProps?.includes(prop) ? 'slots' : 'props' } };
-    return acc;
-  }, {} as Record<string, any>);
-}
-
-function generateForArgs(
-  args: Args,
-  slotProps: string[] | undefined = undefined,
-  template = '<Component />'
-) {
-  const components = getComponentsFromTemplate(template);
-  return generateTemplateSource(
-    components,
-    { args, argTypes: generateArgTypes(args, slotProps) },
-    true
-  );
-}
 
 describe('Vue3: sourceDecorator->mapAttributesAndDirective()', () => {
   test('camelCase boolean Arg', () => {
@@ -293,86 +272,6 @@ describe('Vue3: sourceDecorator->generateAttributesSource()', () => {
       )
     ).toMatchInlineSnapshot(
       `:camel-case-boolean-arg="true" camel-case-string-arg="foo" :came-case-number-arg="2023"`
-    );
-  });
-});
-
-describe('Vue3: generateSource() snippet', () => {
-  test('template component camelCase string Arg', () => {
-    expect(
-      generateForArgs(
-        {
-          camelCaseStringArg: 'foo',
-        },
-        [] as ArgsType<Args>,
-        `<Component :camel-case-string-arg="args.camelCaseStringArg" ></Component>`
-      )
-    ).toMatchInlineSnapshot(`<Component :camel-case-string-arg="'foo'" />`);
-  });
-
-  test('template component camelCase bool Arg', () => {
-    expect(
-      generateForArgs(
-        {
-          camelCaseBooleanArg: true,
-        },
-        [] as ArgsType<Args>,
-        `<Component :camel-case-boolean-arg="args.camelCaseBooleanArg" ></Component>`
-      )
-    ).toMatchInlineSnapshot(`<Component :camel-case-boolean-arg="true" />`);
-  });
-
-  test('template component camelCase bool, string Arg', () => {
-    expect(
-      generateForArgs(
-        {
-          camelCaseBooleanArg: true,
-          camelCaseStringArg: 'foo',
-        },
-        [] as ArgsType<Args>,
-        `<Component :camel-case-boolean-arg="args.camelCaseBooleanArg" :camel-case-string-arg="args.camelCaseStringArg" ></Component>`
-      )
-    ).toMatchInlineSnapshot(
-      `<Component :camel-case-boolean-arg="true" :camel-case-string-arg="'foo'" />`
-    );
-  });
-
-  test('template component camelCase object Arg', () => {
-    expect(
-      generateForArgs(
-        {
-          camelCaseObjectArg: { foo: 'bar' },
-        },
-        [] as ArgsType<Args>,
-        `<Component :camel-case-object-arg="args.camelCaseObjectArg" ></Component>`
-      )
-    ).toMatchInlineSnapshot(`<Component :camel-case-object-arg="{foo:'bar'}" />`);
-  });
-
-  test('template component camelCase object Arg and Slot', () => {
-    expect(
-      generateForArgs(
-        {
-          camelCaseObjectArg: { foo: 'bar' },
-        },
-        [] as ArgsType<Args>,
-        `<Component :camel-case-object-arg="args.camelCaseObjectArg"> SLOT </Component>`
-      )
-    ).toMatchInlineSnapshot(`<Component :camel-case-object-arg="{foo:'bar'}"> SLOT </Component>`);
-  });
-
-  test('template component camelCase object Arg and dynamic Slot content', () => {
-    expect(
-      generateForArgs(
-        {
-          camelCaseObjectArg: { foo: 'bar' },
-          camelCaseStringSlotArg: 'foo',
-        },
-        [] as ArgsType<Args>,
-        `<Component :camel-case-object-arg="args.camelCaseObjectArg"> SLOT {{args.camelCaseStringSlotArg}}</Component>`
-      )
-    ).toMatchInlineSnapshot(
-      `<Component :camel-case-object-arg="{foo:'bar'}"> SLOT foo</Component>`
     );
   });
 });

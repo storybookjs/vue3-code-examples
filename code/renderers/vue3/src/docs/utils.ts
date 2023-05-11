@@ -11,7 +11,6 @@ const omitEvent = (args: Args): Args =>
     : {};
 
 const displayObject = (obj: any): string | boolean | number => {
-  console.log(obj);
   if (obj && typeof obj === 'object') {
     return `{${Object.keys(obj)
       .map((key) => `${key}:${displayObject(obj[key])}`)
@@ -38,16 +37,30 @@ const attributeSource = (key: string, value: unknown, dynamic?: boolean) =>
 
 const evalExp = (argExpValue: any, args: Args): any => {
   let evalVal = argExpValue;
-  if (/v-bind="(\w+)"/.test(evalVal))
+  if (evalVal && /v-bind="(\w+)"/.test(evalVal))
     return evalVal.replace(/"(\w+)"/g, `"${displayObject(args)}"`);
 
   Object.keys(args).forEach((akey) => {
-    const regexMatch = new RegExp(`(\\w+)\\.${akey}\\(?`, 'g');
+    const regexMatch = new RegExp(`(\\w+)\\.${akey}`, 'g');
     const regexTarget = new RegExp(`(\\w+)\\.${akey}`, 'g');
-    if (regexMatch.test(evalVal)) evalVal = evalVal.replace(regexTarget, displayObject(args[akey]));
+    if (regexMatch.test(evalVal)) {
+      evalVal = evalVal.replace(regexTarget, displayObject(args[akey]));
+    }
   });
 
   return evalVal;
+};
+
+const replaceValueWithRef = (source: string, args: Args, ref: string) => {
+  const value = ref ? args[ref] : 'args';
+
+  const bindValue = () => {
+    const argsRef = Object.fromEntries(Object.entries(args).map(([key]) => [key, key]));
+    return (displayObject(argsRef) as string).replace(/'/g, '');
+  };
+
+  const regexMatch = new RegExp(`="${value}"`, 'g');
+  return source.replace(regexMatch, `="${ref ?? bindValue()}"`);
 };
 
 /**
@@ -73,5 +86,6 @@ export {
   directiveSource,
   attributeSource,
   evalExp,
+  replaceValueWithRef,
   generateExpression,
 };

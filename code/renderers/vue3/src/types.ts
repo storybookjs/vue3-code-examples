@@ -3,6 +3,8 @@ import type { ConcreteComponent } from 'vue';
 
 export type { RenderContext } from '@storybook/types';
 
+export type StoryID = string;
+
 export interface ShowErrorArgs {
   title: string;
   description: string;

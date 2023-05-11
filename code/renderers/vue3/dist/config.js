@@ -7641,7 +7641,6 @@ var import_lodash = __toESM(require_lodash());
 // src/docs/utils.ts
 var omitEvent = (args2) => args2 ? Object.fromEntries(Object.entries(args2).filter(([key, value]) => !key.startsWith("on"))) : {};
 var displayObject = (obj) => {
-  console.log(obj);
   if (obj && typeof obj === "object") {
     return `{${Object.keys(obj).map((key) => `${key}:${displayObject(obj[key])}`).join(",")}}`;
   }
@@ -7660,15 +7659,25 @@ var attributeSource = (key, value, dynamic) => (
 );
 var evalExp = (argExpValue, args2) => {
   let evalVal = argExpValue;
-  if (/v-bind="(\w+)"/.test(evalVal))
+  if (evalVal && /v-bind="(\w+)"/.test(evalVal))
     return evalVal.replace(/"(\w+)"/g, `"${displayObject(args2)}"`);
   Object.keys(args2).forEach((akey) => {
-    const regexMatch = new RegExp(`(\\w+)\\.${akey}\\(?`, "g");
+    const regexMatch = new RegExp(`(\\w+)\\.${akey}`, "g");
     const regexTarget = new RegExp(`(\\w+)\\.${akey}`, "g");
-    if (regexMatch.test(evalVal))
+    if (regexMatch.test(evalVal)) {
       evalVal = evalVal.replace(regexTarget, displayObject(args2[akey]));
+    }
   });
   return evalVal;
+};
+var replaceValueWithRef = (source2, args2, ref) => {
+  const value = ref ? args2[ref] : "args";
+  const bindValue = () => {
+    const argsRef = Object.fromEntries(Object.entries(args2).map(([key]) => [key, key]));
+    return displayObject(argsRef).replace(/'/g, "");
+  };
+  const regexMatch = new RegExp(`="${value}"`, "g");
+  return source2.replace(regexMatch, `="${ref ?? bindValue()}"`);
 };
 function generateExpression(slot) {
   let body = slot.toString().split("=>")[1].trim().replace("return", "").trim();
@@ -7691,7 +7700,10 @@ var skipSourceRender = (context) => {
 };
 function generateAttributesSource(tempArgs, args2, argTypes2, byRef2) {
   return Object.keys(tempArgs).map((key) => {
-    return evalExp(tempArgs[key].loc.source.replace(/\$props/g, "args"), omitEvent(args2));
+    var _a;
+    const source2 = tempArgs[key].loc.source.replace(/\$props/g, "args");
+    const argKey = (_a = tempArgs[key].arg) == null ? void 0 : _a.loc.source;
+    return byRef2 && argKey ? replaceValueWithRef(source2, args2, argKey) : evalExp(source2, omitEvent(args2));
   }).join(" ");
 }
 function mapAttributesAndDirectives(props) {
@@ -7832,7 +7844,7 @@ function generateSource(context) {
   const storyComponents = getTemplateComponents(context == null ? void 0 : context.originalStoryFn, context);
   const withScript = ((_c = (_b = (_a = context == null ? void 0 : context.parameters) == null ? void 0 : _a.docs) == null ? void 0 : _b.source) == null ? void 0 : _c.withScriptSetup) || false;
   const generatedScript = withScript ? generateScriptSetup(args2, argTypes2, storyComponents) : "";
-  const generatedTemplate = generateTemplateSource(storyComponents, context);
+  const generatedTemplate = generateTemplateSource(storyComponents, context, withScript);
   if (generatedTemplate) {
     const source2 = `${generatedScript}
  <template>
@@ -7864,7 +7876,7 @@ var render = (props, context) => {
       `Unable to render story ${id} as the component annotation is missing from the default export`
     );
   }
-  return (0, import_vue2.h)(Component, props, generateSlots(context));
+  return () => (0, import_vue2.h)(Component, props, generateSlots(context));
 };
 var setupFunctions = /* @__PURE__ */ new Set();
 var runSetupFunctions = (app, storyContext) => {
@@ -7875,7 +7887,8 @@ function renderToCanvas({ storyFn, forceRemount, showMain, showException, storyC
   const existingApp = map.get(canvasElement);
   if (existingApp && !forceRemount) {
     const element = storyFn();
-    updateArgs(existingApp.reactiveArgs, element.props ?? storyContext.args);
+    const args2 = getArgs(element, storyContext);
+    updateArgs(existingApp.reactiveArgs, args2);
     return () => {
       teardown(existingApp.vueApp, canvasElement);
     };
@@ -7886,13 +7899,14 @@ function renderToCanvas({ storyFn, forceRemount, showMain, showException, storyC
     setup() {
       storyContext.args = (0, import_vue2.reactive)(storyContext.args);
       const rootElement = storyFn();
+      const args2 = getArgs(rootElement, storyContext);
       const appState = {
         vueApp,
-        reactiveArgs: (0, import_vue2.reactive)(rootElement.props ?? storyContext.args)
+        reactiveArgs: (0, import_vue2.reactive)(args2)
       };
       map.set(canvasElement, appState);
       return () => {
-        return (0, import_vue2.h)(rootElement, appState.reactiveArgs);
+        return (0, import_vue2.h)(rootElement);
       };
     }
   });
@@ -7914,6 +7928,9 @@ function generateSlots(context) {
     return [key, typeof slotValue === "function" ? slotValue : () => slotValue];
   });
   return (0, import_vue2.reactive)(Object.fromEntries(slots));
+}
+function getArgs(element, storyContext) {
+  return element.props && (0, import_vue2.isVNode)(element) ? element.props : storyContext.args;
 }
 function updateArgs(reactiveArgs, nextArgs) {
   if (Object.keys(nextArgs).length === 0)
@@ -7939,10 +7956,12 @@ function normalizeFunctionalComponent(options) {
   return typeof options === "function" ? { render: options, name: options.name } : options;
 }
 function prepare(rawStory, innerStory) {
-  const story = normalizeFunctionalComponent(rawStory);
-  if (story == null) {
+  const story = rawStory;
+  if (story === null) {
     return null;
   }
+  if (typeof story === "function")
+    return story;
   if (innerStory) {
     return {
       // Normalize so we can always spread an object
@@ -7959,25 +7978,20 @@ function prepare(rawStory, innerStory) {
 function decorateStory(storyFn, decorators2) {
   return decorators2.reduce(
     (decorated, decorator) => (context) => {
-      let story = { isNull: true };
+      let story;
       const decoratedStory = decorator((update) => {
         story = decorated({
           ...context,
           ...(0, import_preview_api2.sanitizeStoryContextUpdate)(update)
         });
-        const argsChanged = update && update.args && Object.keys(update).length === 1 && !(0, import_vue3.isVNode)(story);
-        if (argsChanged) {
-          story = (0, import_vue3.h)(story, update.args);
-        }
         return story;
       }, context);
-      if (story.isNull)
+      if (!story)
         story = decorated(context);
       if (decoratedStory === story) {
         return story;
       }
-      const props = story.props ?? context.args;
-      const innerStory = () => (0, import_vue3.h)(story, props);
+      const innerStory = () => (0, import_vue3.h)(story);
       return prepare(decoratedStory, innerStory);
     },
     (context) => prepare(storyFn(context))

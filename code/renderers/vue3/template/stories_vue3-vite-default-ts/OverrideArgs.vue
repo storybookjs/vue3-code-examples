@@ -5,8 +5,8 @@
   </button>
 </template>
 
-<script lang="typescript">
-import { h, computed, reactive } from 'vue';
+<script lang="ts">
+import { computed } from 'vue';
 
 export default {
   name: 'override-args',
@@ -22,7 +22,7 @@ export default {
     },
   },
 
-  // @ts-expect-error (Converted from ts-ignore)
+
   setup(props, { emit }) {
     const classes = {
       'storybook-button': true,

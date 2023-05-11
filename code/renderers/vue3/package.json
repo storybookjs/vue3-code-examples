@@ -1,18 +1,18 @@
 {
   "name": "@storybook/vue3",
-  "version": "7.1.0-alpha.0",
+  "version": "7.1.0-alpha.16",
   "description": "Storybook Vue 3 renderer",
   "keywords": [
     "storybook"
   ],
-  "homepage": "https://github.com/storybookjs/storybook/tree/main/renderers/vue3",
+  "homepage": "https://github.com/storybookjs/storybook/tree/next/code/renderers/vue3",
   "bugs": {
     "url": "https://github.com/storybookjs/storybook/issues"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/storybookjs/storybook.git",
-    "directory": "renderers/vue3"
+    "directory": "code/renderers/vue3"
   },
   "funding": {
     "type": "opencollective",
@@ -21,15 +21,15 @@
   "license": "MIT",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "node": "./dist/index.js",
       "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
+      "import": "./dist/index.mjs"
     },
     "./preview": {
+      "types": "./dist/config.d.ts",
       "require": "./dist/config.js",
-      "import": "./dist/config.mjs",
-      "types": "./dist/config.d.ts"
+      "import": "./dist/config.mjs"
     },
     "./package.json": "./package.json"
   },
@@ -48,11 +48,11 @@
     "prep": "../../../scripts/prepare/bundle.ts"
   },
   "dependencies": {
-    "@storybook/core-client": "7.1.0-alpha.0",
-    "@storybook/docs-tools": "7.1.0-alpha.0",
+    "@storybook/core-client": "7.1.0-alpha.16",
+    "@storybook/docs-tools": "7.1.0-alpha.16",
     "@storybook/global": "^5.0.0",
-    "@storybook/preview-api": "7.1.0-alpha.0",
-    "@storybook/types": "7.1.0-alpha.0",
+    "@storybook/preview-api": "7.1.0-alpha.16",
+    "@storybook/types": "7.1.0-alpha.16",
     "ts-dedent": "^2.0.0",
     "type-fest": "2.19.0"
   },
@@ -80,5 +80,5 @@
     ],
     "platform": "browser"
   },
-  "gitHead": "8ff2938f8ac0c2d524ae653cd89251e5cd4721a4"
+  "gitHead": "1be6a4fe5e5c1ef7089b55d9e89b53cd1faee069"
 }

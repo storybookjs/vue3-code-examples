@@ -2492,7 +2492,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-essentials@npm:^7.0.0-rc.9":
+"@storybook/addon-essentials@npm:^7.1.0-alpha.13":
   version: 7.0.0-rc.11
   resolution: "@storybook/addon-essentials@npm:7.0.0-rc.11"
   dependencies:
@@ -2528,7 +2528,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-interactions@npm:^7.0.0-rc.9":
+"@storybook/addon-interactions@npm:^7.1.0-alpha.13":
   version: 7.0.0-rc.11
   resolution: "@storybook/addon-interactions@npm:7.0.0-rc.11"
   dependencies:
@@ -2557,7 +2557,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-links@npm:^7.0.0-rc.9":
+"@storybook/addon-links@npm:^7.1.0-alpha.13":
   version: 7.0.0-rc.11
   resolution: "@storybook/addon-links@npm:7.0.0-rc.11"
   dependencies:
@@ -2726,7 +2726,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/blocks@npm:7.0.0-rc.11, @storybook/blocks@npm:^7.0.0-rc.9":
+"@storybook/blocks@npm:7.0.0-rc.11, @storybook/blocks@npm:^7.1.0-alpha.13":
   version: 7.0.0-rc.11
   resolution: "@storybook/blocks@npm:7.0.0-rc.11"
   dependencies:
@@ -3733,7 +3733,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/vue3-vite@npm:^7.0.0-rc.9":
+"@storybook/vue3-vite@npm:^7.1.0-alpha.13":
   version: 7.0.0-rc.11
   resolution: "@storybook/vue3-vite@npm:7.0.0-rc.11"
   dependencies:
@@ -10969,7 +10969,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"storybook@npm:^7.0.0-rc.9":
+"storybook@npm:^7.1.0-alpha.13":
   version: 7.0.0-rc.11
   resolution: "storybook@npm:7.0.0-rc.11"
   dependencies:
@@ -11798,22 +11798,22 @@ __metadata:
   resolution: "vue3-storybook-examples@workspace:."
   dependencies:
     "@mdi/font": 7.0.96
-    "@storybook/addon-essentials": ^7.0.0-rc.9
-    "@storybook/addon-interactions": ^7.0.0-rc.9
-    "@storybook/addon-links": ^7.0.0-rc.9
-    "@storybook/blocks": ^7.0.0-rc.9
+    "@storybook/addon-essentials": ^7.1.0-alpha.13
+    "@storybook/addon-interactions": ^7.1.0-alpha.13
+    "@storybook/addon-links": ^7.1.0-alpha.13
+    "@storybook/blocks": ^7.1.0-alpha.13
     "@storybook/jest": ^0.0.10
     "@storybook/test-runner": next
     "@storybook/testing-library": next
-    "@storybook/vue3": ^7.0.0-rc.9
-    "@storybook/vue3-vite": ^7.0.0-rc.9
+    "@storybook/vue3": ^7.1.0-alpha.13
+    "@storybook/vue3-vite": ^7.1.0-alpha.13
     "@types/node": 16
     "@vitejs/plugin-vue": ^4.0.0
     gsap: ^3.11.4
     react: ^18.2.0
     react-dom: ^18.2.0
     roboto-fontface: "*"
-    storybook: ^7.0.0-rc.9
+    storybook: ^7.1.0-alpha.13
     typescript: ^4.9.3
     vite: ^4.1.0
     vite-plugin-vuetify: ^1.0.2

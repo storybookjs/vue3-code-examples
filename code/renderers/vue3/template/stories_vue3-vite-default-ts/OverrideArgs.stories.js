@@ -10,7 +10,7 @@ const icons = {
   },
 };
 
-export default {
+const meta = {
   component: OverrideArgs,
   argTypes: {
     // To show that other props are passed through
@@ -38,5 +38,7 @@ export default {
     };
   },
 };
+
+export default meta;
 
 export const TestOne = {};

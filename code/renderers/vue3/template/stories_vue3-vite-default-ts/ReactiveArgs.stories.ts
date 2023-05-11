@@ -1,18 +1,24 @@
 import { expect } from '@storybook/jest';
 import { global as globalThis } from '@storybook/global';
+import type { Meta, StoryObj, StoryFn } from '@storybook/vue3';
 import { within, userEvent } from '@storybook/testing-library';
 import { UPDATE_STORY_ARGS, STORY_ARGS_UPDATED, RESET_STORY_ARGS } from '@storybook/core-events';
+
 import ReactiveArgs from './ReactiveArgs.vue';
 
-export default {
+const meta = {
   component: ReactiveArgs,
   argTypes: {
     // To show that other props are passed through
     backgroundColor: { control: 'color' },
   },
-};
+} satisfies Meta<typeof ReactiveArgs>;
 
-export const ReactiveTest = {
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const ReactiveTest: Story = {
   args: {
     label: 'Button',
   },
@@ -43,7 +49,7 @@ export const ReactiveTest = {
   },
 };
 
-export const ReactiveHtmlWrapper = {
+export const ReactiveHtmlWrapper: Story = {
   args: { label: 'Wrapped Button' },
 
   decorators: [
@@ -82,11 +88,15 @@ export const ReactiveHtmlWrapper = {
 };
 
 // to test that Simple html Decorators in CSF2 format are applied correctly in reactive mode
-export const ReactiveCSF2Wrapper = (args, { argTypes }) => ({
+const ReactiveCSF2WrapperTempl: StoryFn = (args) => ({
   components: { ReactiveArgs },
-  props: Object.keys(argTypes),
-  template: '<ReactiveArgs v-bind="$props" />',
+  setup() {
+    return { args };
+  },
+  template: '<ReactiveArgs v-bind="args" />',
 });
+
+export const ReactiveCSF2Wrapper = ReactiveCSF2WrapperTempl.bind({});
 
 ReactiveCSF2Wrapper.args = {
   label: 'CSF2 Wrapped Button',

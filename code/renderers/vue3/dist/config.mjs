@@ -1,10 +1,8 @@
-import {
-  __commonJS,
-  __toESM,
-  decorateStory,
-  render,
-  renderToCanvas
-} from "./chunk-BC6D4WSH.mjs";
+import { __commonJS, __toESM } from './chunk-VO4KG7P2.mjs';
+export { decorateStory as applyDecorators, render, renderToCanvas } from './chunk-VO4KG7P2.mjs';
+import { enhanceArgTypes, SNIPPET_RENDERED, extractComponentDescription, hasDocgen, extractComponentProps, convert, SourceType } from '@storybook/docs-tools';
+import { addons } from '@storybook/preview-api';
+import { watch, h, isVNode } from 'vue';
 
 // ../../node_modules/lodash/lodash.js
 var require_lodash = __commonJS({
@@ -5485,12 +5483,6 @@ var require_lodash = __commonJS({
     }).call(exports);
   }
 });
-
-// src/docs/config.ts
-import { extractComponentDescription, enhanceArgTypes } from "@storybook/docs-tools";
-
-// src/docs/extractArgTypes.ts
-import { hasDocgen, extractComponentProps, convert } from "@storybook/docs-tools";
 var SECTIONS = ["props", "events", "slots", "methods"];
 var extractArgTypes = (component) => {
   if (!hasDocgen(component)) {
@@ -5518,10 +5510,6 @@ var extractArgTypes = (component) => {
   return results;
 };
 
-// src/docs/sourceDecorator.ts
-import { addons } from "@storybook/preview-api";
-import { SourceType, SNIPPET_RENDERED } from "@storybook/docs-tools";
-
 // ../../node_modules/@vue/shared/dist/shared.esm-bundler.js
 function makeMap(str, expectsLowerCase) {
   const map = /* @__PURE__ */ Object.create(null);
@@ -5531,72 +5519,9 @@ function makeMap(str, expectsLowerCase) {
   }
   return expectsLowerCase ? (val) => !!map[val.toLowerCase()] : (val) => !!map[val];
 }
-var PatchFlagNames = {
-  [
-    1
-    /* PatchFlags.TEXT */
-  ]: `TEXT`,
-  [
-    2
-    /* PatchFlags.CLASS */
-  ]: `CLASS`,
-  [
-    4
-    /* PatchFlags.STYLE */
-  ]: `STYLE`,
-  [
-    8
-    /* PatchFlags.PROPS */
-  ]: `PROPS`,
-  [
-    16
-    /* PatchFlags.FULL_PROPS */
-  ]: `FULL_PROPS`,
-  [
-    32
-    /* PatchFlags.HYDRATE_EVENTS */
-  ]: `HYDRATE_EVENTS`,
-  [
-    64
-    /* PatchFlags.STABLE_FRAGMENT */
-  ]: `STABLE_FRAGMENT`,
-  [
-    128
-    /* PatchFlags.KEYED_FRAGMENT */
-  ]: `KEYED_FRAGMENT`,
-  [
-    256
-    /* PatchFlags.UNKEYED_FRAGMENT */
-  ]: `UNKEYED_FRAGMENT`,
-  [
-    512
-    /* PatchFlags.NEED_PATCH */
-  ]: `NEED_PATCH`,
-  [
-    1024
-    /* PatchFlags.DYNAMIC_SLOTS */
-  ]: `DYNAMIC_SLOTS`,
-  [
-    2048
-    /* PatchFlags.DEV_ROOT_FRAGMENT */
-  ]: `DEV_ROOT_FRAGMENT`,
-  [
-    -1
-    /* PatchFlags.HOISTED */
-  ]: `HOISTED`,
-  [
-    -2
-    /* PatchFlags.BAIL */
-  ]: `BAIL`
-};
-var specialBooleanAttrs = `itemscope,allowfullscreen,formnovalidate,ismap,nomodule,novalidate,readonly`;
-var isBooleanAttr = /* @__PURE__ */ makeMap(specialBooleanAttrs + `,async,autofocus,autoplay,controls,default,defer,disabled,hidden,loop,open,required,reversed,scoped,seamless,checked,muted,multiple,selected`);
-var EMPTY_OBJ = true ? Object.freeze({}) : {};
-var EMPTY_ARR = true ? Object.freeze([]) : [];
 var NO = () => false;
 var extend = Object.assign;
 var isArray = Array.isArray;
-var isString = (val) => typeof val === "string";
 var cacheStringFunction = (fn) => {
   const cache = /* @__PURE__ */ Object.create(null);
   return (str) => {
@@ -5604,14 +5529,8 @@ var cacheStringFunction = (fn) => {
     return hit || (cache[str] = fn(str));
   };
 };
-var camelizeRE = /-(\w)/g;
-var camelize = cacheStringFunction((str) => {
-  return str.replace(camelizeRE, (_, c) => c ? c.toUpperCase() : "");
-});
 var hyphenateRE = /\B([A-Z])/g;
 var hyphenate = cacheStringFunction((str) => str.replace(hyphenateRE, "-$1").toLowerCase());
-var capitalize = cacheStringFunction((str) => str.charAt(0).toUpperCase() + str.slice(1));
-var toHandlerKey = cacheStringFunction((str) => str ? `on${capitalize(str)}` : ``);
 
 // ../../node_modules/@vue/compiler-core/dist/compiler-core.esm-bundler.js
 function defaultOnError(error) {
@@ -5621,7 +5540,7 @@ function defaultOnWarn(msg) {
   console.warn(`[Vue warn] ${msg.message}`);
 }
 function createCompilerError(code, loc, messages, additionalMessage) {
-  const msg = true ? (messages || errorMessages)[code] + (additionalMessage || ``) : code;
+  const msg = (messages || errorMessages)[code] + (additionalMessage || ``) ;
   const error = new SyntaxError(String(msg));
   error.code = code;
   error.loc = loc;
@@ -5843,86 +5762,10 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     /* ErrorCodes.__EXTEND_POINT__ */
   ]: ``
 };
-var FRAGMENT = Symbol(true ? `Fragment` : ``);
-var TELEPORT = Symbol(true ? `Teleport` : ``);
-var SUSPENSE = Symbol(true ? `Suspense` : ``);
-var KEEP_ALIVE = Symbol(true ? `KeepAlive` : ``);
-var BASE_TRANSITION = Symbol(true ? `BaseTransition` : ``);
-var OPEN_BLOCK = Symbol(true ? `openBlock` : ``);
-var CREATE_BLOCK = Symbol(true ? `createBlock` : ``);
-var CREATE_ELEMENT_BLOCK = Symbol(true ? `createElementBlock` : ``);
-var CREATE_VNODE = Symbol(true ? `createVNode` : ``);
-var CREATE_ELEMENT_VNODE = Symbol(true ? `createElementVNode` : ``);
-var CREATE_COMMENT = Symbol(true ? `createCommentVNode` : ``);
-var CREATE_TEXT = Symbol(true ? `createTextVNode` : ``);
-var CREATE_STATIC = Symbol(true ? `createStaticVNode` : ``);
-var RESOLVE_COMPONENT = Symbol(true ? `resolveComponent` : ``);
-var RESOLVE_DYNAMIC_COMPONENT = Symbol(true ? `resolveDynamicComponent` : ``);
-var RESOLVE_DIRECTIVE = Symbol(true ? `resolveDirective` : ``);
-var RESOLVE_FILTER = Symbol(true ? `resolveFilter` : ``);
-var WITH_DIRECTIVES = Symbol(true ? `withDirectives` : ``);
-var RENDER_LIST = Symbol(true ? `renderList` : ``);
-var RENDER_SLOT = Symbol(true ? `renderSlot` : ``);
-var CREATE_SLOTS = Symbol(true ? `createSlots` : ``);
-var TO_DISPLAY_STRING = Symbol(true ? `toDisplayString` : ``);
-var MERGE_PROPS = Symbol(true ? `mergeProps` : ``);
-var NORMALIZE_CLASS = Symbol(true ? `normalizeClass` : ``);
-var NORMALIZE_STYLE = Symbol(true ? `normalizeStyle` : ``);
-var NORMALIZE_PROPS = Symbol(true ? `normalizeProps` : ``);
-var GUARD_REACTIVE_PROPS = Symbol(true ? `guardReactiveProps` : ``);
-var TO_HANDLERS = Symbol(true ? `toHandlers` : ``);
-var CAMELIZE = Symbol(true ? `camelize` : ``);
-var CAPITALIZE = Symbol(true ? `capitalize` : ``);
-var TO_HANDLER_KEY = Symbol(true ? `toHandlerKey` : ``);
-var SET_BLOCK_TRACKING = Symbol(true ? `setBlockTracking` : ``);
-var PUSH_SCOPE_ID = Symbol(true ? `pushScopeId` : ``);
-var POP_SCOPE_ID = Symbol(true ? `popScopeId` : ``);
-var WITH_CTX = Symbol(true ? `withCtx` : ``);
-var UNREF = Symbol(true ? `unref` : ``);
-var IS_REF = Symbol(true ? `isRef` : ``);
-var WITH_MEMO = Symbol(true ? `withMemo` : ``);
-var IS_MEMO_SAME = Symbol(true ? `isMemoSame` : ``);
-var helperNameMap = {
-  [FRAGMENT]: `Fragment`,
-  [TELEPORT]: `Teleport`,
-  [SUSPENSE]: `Suspense`,
-  [KEEP_ALIVE]: `KeepAlive`,
-  [BASE_TRANSITION]: `BaseTransition`,
-  [OPEN_BLOCK]: `openBlock`,
-  [CREATE_BLOCK]: `createBlock`,
-  [CREATE_ELEMENT_BLOCK]: `createElementBlock`,
-  [CREATE_VNODE]: `createVNode`,
-  [CREATE_ELEMENT_VNODE]: `createElementVNode`,
-  [CREATE_COMMENT]: `createCommentVNode`,
-  [CREATE_TEXT]: `createTextVNode`,
-  [CREATE_STATIC]: `createStaticVNode`,
-  [RESOLVE_COMPONENT]: `resolveComponent`,
-  [RESOLVE_DYNAMIC_COMPONENT]: `resolveDynamicComponent`,
-  [RESOLVE_DIRECTIVE]: `resolveDirective`,
-  [RESOLVE_FILTER]: `resolveFilter`,
-  [WITH_DIRECTIVES]: `withDirectives`,
-  [RENDER_LIST]: `renderList`,
-  [RENDER_SLOT]: `renderSlot`,
-  [CREATE_SLOTS]: `createSlots`,
-  [TO_DISPLAY_STRING]: `toDisplayString`,
-  [MERGE_PROPS]: `mergeProps`,
-  [NORMALIZE_CLASS]: `normalizeClass`,
-  [NORMALIZE_STYLE]: `normalizeStyle`,
-  [NORMALIZE_PROPS]: `normalizeProps`,
-  [GUARD_REACTIVE_PROPS]: `guardReactiveProps`,
-  [TO_HANDLERS]: `toHandlers`,
-  [CAMELIZE]: `camelize`,
-  [CAPITALIZE]: `capitalize`,
-  [TO_HANDLER_KEY]: `toHandlerKey`,
-  [SET_BLOCK_TRACKING]: `setBlockTracking`,
-  [PUSH_SCOPE_ID]: `pushScopeId`,
-  [POP_SCOPE_ID]: `popScopeId`,
-  [WITH_CTX]: `withCtx`,
-  [UNREF]: `unref`,
-  [IS_REF]: `isRef`,
-  [WITH_MEMO]: `withMemo`,
-  [IS_MEMO_SAME]: `isMemoSame`
-};
+var TELEPORT = Symbol(`Teleport` );
+var SUSPENSE = Symbol(`Suspense` );
+var KEEP_ALIVE = Symbol(`KeepAlive` );
+var BASE_TRANSITION = Symbol(`BaseTransition` );
 var locStub = {
   source: "",
   start: { line: 1, column: 1, offset: 0 },
@@ -5943,98 +5786,6 @@ function createRoot(children, loc = locStub) {
     loc
   };
 }
-function createVNodeCall(context, tag, props, children, patchFlag, dynamicProps, directives, isBlock = false, disableTracking = false, isComponent2 = false, loc = locStub) {
-  if (context) {
-    if (isBlock) {
-      context.helper(OPEN_BLOCK);
-      context.helper(getVNodeBlockHelper(context.inSSR, isComponent2));
-    } else {
-      context.helper(getVNodeHelper(context.inSSR, isComponent2));
-    }
-    if (directives) {
-      context.helper(WITH_DIRECTIVES);
-    }
-  }
-  return {
-    type: 13,
-    tag,
-    props,
-    children,
-    patchFlag,
-    dynamicProps,
-    directives,
-    isBlock,
-    disableTracking,
-    isComponent: isComponent2,
-    loc
-  };
-}
-function createObjectExpression(properties, loc = locStub) {
-  return {
-    type: 15,
-    loc,
-    properties
-  };
-}
-function createObjectProperty(key, value) {
-  return {
-    type: 16,
-    loc: locStub,
-    key: isString(key) ? createSimpleExpression(key, true) : key,
-    value
-  };
-}
-function createSimpleExpression(content2, isStatic = false, loc = locStub, constType = 0) {
-  return {
-    type: 4,
-    loc,
-    content: content2,
-    isStatic,
-    constType: isStatic ? 3 : constType
-  };
-}
-function createCompoundExpression(children, loc = locStub) {
-  return {
-    type: 8,
-    loc,
-    children
-  };
-}
-function createCallExpression(callee, args2 = [], loc = locStub) {
-  return {
-    type: 14,
-    loc,
-    callee,
-    arguments: args2
-  };
-}
-function createFunctionExpression(params, returns = void 0, newline = false, isSlot = false, loc = locStub) {
-  return {
-    type: 18,
-    params,
-    returns,
-    newline,
-    isSlot,
-    loc
-  };
-}
-function createConditionalExpression(test, consequent, alternate, newline = true) {
-  return {
-    type: 19,
-    test,
-    consequent,
-    alternate,
-    newline,
-    loc: locStub
-  };
-}
-function createBlockStatement(body) {
-  return {
-    type: 21,
-    body,
-    loc: locStub
-  };
-}
 var isStaticExp = (p) => p.type === 4 && p.isStatic;
 var isBuiltInType = (tag, expected) => tag === expected || tag === hyphenate(expected);
 function isCoreComponent(tag) {
@@ -6047,18 +5798,6 @@ function isCoreComponent(tag) {
   } else if (isBuiltInType(tag, "BaseTransition")) {
     return BASE_TRANSITION;
   }
-}
-function getInnerRange(loc, offset, length) {
-  const source2 = loc.source.slice(offset, offset + length);
-  const newLoc = {
-    source: source2,
-    start: advancePositionWithClone(loc.start, loc.source, offset),
-    end: loc.end
-  };
-  if (length != null) {
-    newLoc.end = advancePositionWithClone(loc.start, loc.source, offset + length);
-  }
-  return newLoc;
 }
 function advancePositionWithClone(pos, source2, numberOfCharacters = source2.length) {
   return advancePositionWithMutation(extend({}, pos), source2, numberOfCharacters);
@@ -6077,136 +5816,8 @@ function advancePositionWithMutation(pos, source2, numberOfCharacters = source2.
   pos.column = lastNewLinePos === -1 ? pos.column + numberOfCharacters : numberOfCharacters - lastNewLinePos;
   return pos;
 }
-function findDir(node, name, allowEmpty = false) {
-  for (let i = 0; i < node.props.length; i++) {
-    const p = node.props[i];
-    if (p.type === 7 && (allowEmpty || p.exp) && (isString(name) ? p.name === name : name.test(p.name))) {
-      return p;
-    }
-  }
-}
-function findProp(node, name, dynamicOnly = false, allowEmpty = false) {
-  for (let i = 0; i < node.props.length; i++) {
-    const p = node.props[i];
-    if (p.type === 6) {
-      if (dynamicOnly)
-        continue;
-      if (p.name === name && (p.value || allowEmpty)) {
-        return p;
-      }
-    } else if (p.name === "bind" && (p.exp || allowEmpty) && isStaticArgOf(p.arg, name)) {
-      return p;
-    }
-  }
-}
 function isStaticArgOf(arg, name) {
   return !!(arg && isStaticExp(arg) && arg.content === name);
-}
-function isVSlot(p) {
-  return p.type === 7 && p.name === "slot";
-}
-function isTemplateNode(node) {
-  return node.type === 1 && node.tagType === 3;
-}
-function isSlotOutlet(node) {
-  return node.type === 1 && node.tagType === 2;
-}
-function getVNodeHelper(ssr, isComponent2) {
-  return ssr || isComponent2 ? CREATE_VNODE : CREATE_ELEMENT_VNODE;
-}
-function getVNodeBlockHelper(ssr, isComponent2) {
-  return ssr || isComponent2 ? CREATE_BLOCK : CREATE_ELEMENT_BLOCK;
-}
-var propsHelperSet = /* @__PURE__ */ new Set([NORMALIZE_PROPS, GUARD_REACTIVE_PROPS]);
-function getUnnormalizedProps(props, callPath = []) {
-  if (props && !isString(props) && props.type === 14) {
-    const callee = props.callee;
-    if (!isString(callee) && propsHelperSet.has(callee)) {
-      return getUnnormalizedProps(props.arguments[0], callPath.concat(props));
-    }
-  }
-  return [props, callPath];
-}
-function injectProp(node, prop, context) {
-  let propsWithInjection;
-  let props = node.type === 13 ? node.props : node.arguments[2];
-  let callPath = [];
-  let parentCall;
-  if (props && !isString(props) && props.type === 14) {
-    const ret = getUnnormalizedProps(props);
-    props = ret[0];
-    callPath = ret[1];
-    parentCall = callPath[callPath.length - 1];
-  }
-  if (props == null || isString(props)) {
-    propsWithInjection = createObjectExpression([prop]);
-  } else if (props.type === 14) {
-    const first = props.arguments[0];
-    if (!isString(first) && first.type === 15) {
-      if (!hasProp(prop, first)) {
-        first.properties.unshift(prop);
-      }
-    } else {
-      if (props.callee === TO_HANDLERS) {
-        propsWithInjection = createCallExpression(context.helper(MERGE_PROPS), [
-          createObjectExpression([prop]),
-          props
-        ]);
-      } else {
-        props.arguments.unshift(createObjectExpression([prop]));
-      }
-    }
-    !propsWithInjection && (propsWithInjection = props);
-  } else if (props.type === 15) {
-    if (!hasProp(prop, props)) {
-      props.properties.unshift(prop);
-    }
-    propsWithInjection = props;
-  } else {
-    propsWithInjection = createCallExpression(context.helper(MERGE_PROPS), [
-      createObjectExpression([prop]),
-      props
-    ]);
-    if (parentCall && parentCall.callee === GUARD_REACTIVE_PROPS) {
-      parentCall = callPath[callPath.length - 2];
-    }
-  }
-  if (node.type === 13) {
-    if (parentCall) {
-      parentCall.arguments[0] = propsWithInjection;
-    } else {
-      node.props = propsWithInjection;
-    }
-  } else {
-    if (parentCall) {
-      parentCall.arguments[0] = propsWithInjection;
-    } else {
-      node.arguments[2] = propsWithInjection;
-    }
-  }
-}
-function hasProp(prop, props) {
-  let result = false;
-  if (prop.key.type === 4) {
-    const propKeyName = prop.key.content;
-    result = props.properties.some((p) => p.key.type === 4 && p.key.content === propKeyName);
-  }
-  return result;
-}
-function getMemoedVNodeCall(node) {
-  if (node.type === 14 && node.callee === WITH_MEMO) {
-    return node.arguments[1].returns;
-  } else {
-    return node;
-  }
-}
-function makeBlock(node, { helper, removeHelper, inSSR }) {
-  if (!node.isBlock) {
-    node.isBlock = true;
-    removeHelper(getVNodeHelper(inSSR, node.isComponent));
-    helper(OPEN_BLOCK);
-    helper(getVNodeBlockHelper(inSSR, node.isComponent));
-  }
 }
 var deprecationData = {
   [
@@ -7084,528 +6695,14 @@ function isEnd(context, mode, ancestors) {
 function startsWithEndTagOpen(source2, tag) {
   return startsWith(source2, "</") && source2.slice(2, 2 + tag.length).toLowerCase() === tag.toLowerCase() && /[\t\r\n\f />]/.test(source2[2 + tag.length] || ">");
 }
-function traverseChildren(parent, context) {
-  let i = 0;
-  const nodeRemoved = () => {
-    i--;
-  };
-  for (; i < parent.children.length; i++) {
-    const child = parent.children[i];
-    if (isString(child))
-      continue;
-    context.parent = parent;
-    context.childIndex = i;
-    context.onNodeRemoved = nodeRemoved;
-    traverseNode(child, context);
-  }
-}
-function traverseNode(node, context) {
-  context.currentNode = node;
-  const { nodeTransforms } = context;
-  const exitFns = [];
-  for (let i2 = 0; i2 < nodeTransforms.length; i2++) {
-    const onExit = nodeTransforms[i2](node, context);
-    if (onExit) {
-      if (isArray(onExit)) {
-        exitFns.push(...onExit);
-      } else {
-        exitFns.push(onExit);
-      }
-    }
-    if (!context.currentNode) {
-      return;
-    } else {
-      node = context.currentNode;
-    }
-  }
-  switch (node.type) {
-    case 3:
-      if (!context.ssr) {
-        context.helper(CREATE_COMMENT);
-      }
-      break;
-    case 5:
-      if (!context.ssr) {
-        context.helper(TO_DISPLAY_STRING);
-      }
-      break;
-    case 9:
-      for (let i2 = 0; i2 < node.branches.length; i2++) {
-        traverseNode(node.branches[i2], context);
-      }
-      break;
-    case 10:
-    case 11:
-    case 1:
-    case 0:
-      traverseChildren(node, context);
-      break;
-  }
-  context.currentNode = node;
-  let i = exitFns.length;
-  while (i--) {
-    exitFns[i]();
-  }
-}
-function createStructuralDirectiveTransform(name, fn) {
-  const matches = isString(name) ? (n) => n === name : (n) => name.test(n);
-  return (node, context) => {
-    if (node.type === 1) {
-      const { props } = node;
-      if (node.tagType === 3 && props.some(isVSlot)) {
-        return;
-      }
-      const exitFns = [];
-      for (let i = 0; i < props.length; i++) {
-        const prop = props[i];
-        if (prop.type === 7 && matches(prop.name)) {
-          props.splice(i, 1);
-          i--;
-          const onExit = fn(node, prop, context);
-          if (onExit)
-            exitFns.push(onExit);
-        }
-      }
-      return exitFns;
-    }
-  };
-}
-var prohibitedKeywordRE = new RegExp("\\b" + "arguments,await,break,case,catch,class,const,continue,debugger,default,delete,do,else,export,extends,finally,for,function,if,import,let,new,return,super,switch,throw,try,var,void,while,with,yield".split(",").join("\\b|\\b") + "\\b");
-var stripStringRE = /'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"|`(?:[^`\\]|\\.)*\$\{|\}(?:[^`\\]|\\.)*`|`(?:[^`\\]|\\.)*`/g;
-function validateBrowserExpression(node, context, asParams = false, asRawStatements = false) {
-  const exp = node.content;
-  if (!exp.trim()) {
-    return;
-  }
-  try {
-    new Function(asRawStatements ? ` ${exp} ` : `return ${asParams ? `(${exp}) => {}` : `(${exp})`}`);
-  } catch (e) {
-    let message = e.message;
-    const keywordMatch = exp.replace(stripStringRE, "").match(prohibitedKeywordRE);
-    if (keywordMatch) {
-      message = `avoid using JavaScript keyword as property name: "${keywordMatch[0]}"`;
-    }
-    context.onError(createCompilerError(45, node.loc, void 0, message));
-  }
-}
-var transformIf = createStructuralDirectiveTransform(/^(if|else|else-if)$/, (node, dir, context) => {
-  return processIf(node, dir, context, (ifNode, branch, isRoot) => {
-    const siblings = context.parent.children;
-    let i = siblings.indexOf(ifNode);
-    let key = 0;
-    while (i-- >= 0) {
-      const sibling = siblings[i];
-      if (sibling && sibling.type === 9) {
-        key += sibling.branches.length;
-      }
-    }
-    return () => {
-      if (isRoot) {
-        ifNode.codegenNode = createCodegenNodeForBranch(branch, key, context);
-      } else {
-        const parentCondition = getParentCondition(ifNode.codegenNode);
-        parentCondition.alternate = createCodegenNodeForBranch(branch, key + ifNode.branches.length - 1, context);
-      }
-    };
-  });
-});
-function processIf(node, dir, context, processCodegen) {
-  if (dir.name !== "else" && (!dir.exp || !dir.exp.content.trim())) {
-    const loc = dir.exp ? dir.exp.loc : node.loc;
-    context.onError(createCompilerError(28, dir.loc));
-    dir.exp = createSimpleExpression(`true`, false, loc);
-  }
-  if (dir.exp) {
-    validateBrowserExpression(dir.exp, context);
-  }
-  if (dir.name === "if") {
-    const branch = createIfBranch(node, dir);
-    const ifNode = {
-      type: 9,
-      loc: node.loc,
-      branches: [branch]
-    };
-    context.replaceNode(ifNode);
-    if (processCodegen) {
-      return processCodegen(ifNode, branch, true);
-    }
-  } else {
-    const siblings = context.parent.children;
-    const comments = [];
-    let i = siblings.indexOf(node);
-    while (i-- >= -1) {
-      const sibling = siblings[i];
-      if (sibling && sibling.type === 3) {
-        context.removeNode(sibling);
-        comments.unshift(sibling);
-        continue;
-      }
-      if (sibling && sibling.type === 2 && !sibling.content.trim().length) {
-        context.removeNode(sibling);
-        continue;
-      }
-      if (sibling && sibling.type === 9) {
-        if (dir.name === "else-if" && sibling.branches[sibling.branches.length - 1].condition === void 0) {
-          context.onError(createCompilerError(30, node.loc));
-        }
-        context.removeNode();
-        const branch = createIfBranch(node, dir);
-        if (comments.length && // #3619 ignore comments if the v-if is direct child of <transition>
-        !(context.parent && context.parent.type === 1 && isBuiltInType(context.parent.tag, "transition"))) {
-          branch.children = [...comments, ...branch.children];
-        }
-        if (true) {
-          const key = branch.userKey;
-          if (key) {
-            sibling.branches.forEach(({ userKey }) => {
-              if (isSameKey(userKey, key)) {
-                context.onError(createCompilerError(29, branch.userKey.loc));
-              }
-            });
-          }
-        }
-        sibling.branches.push(branch);
-        const onExit = processCodegen && processCodegen(sibling, branch, false);
-        traverseNode(branch, context);
-        if (onExit)
-          onExit();
-        context.currentNode = null;
-      } else {
-        context.onError(createCompilerError(30, node.loc));
-      }
-      break;
-    }
-  }
-}
-function createIfBranch(node, dir) {
-  const isTemplateIf = node.tagType === 3;
-  return {
-    type: 10,
-    loc: node.loc,
-    condition: dir.name === "else" ? void 0 : dir.exp,
-    children: isTemplateIf && !findDir(node, "for") ? node.children : [node],
-    userKey: findProp(node, `key`),
-    isTemplateIf
-  };
-}
-function createCodegenNodeForBranch(branch, keyIndex, context) {
-  if (branch.condition) {
-    return createConditionalExpression(
-      branch.condition,
-      createChildrenCodegenNode(branch, keyIndex, context),
-      // make sure to pass in asBlock: true so that the comment node call
-      // closes the current block.
-      createCallExpression(context.helper(CREATE_COMMENT), [
-        true ? '"v-if"' : '""',
-        "true"
-      ])
-    );
-  } else {
-    return createChildrenCodegenNode(branch, keyIndex, context);
-  }
-}
-function createChildrenCodegenNode(branch, keyIndex, context) {
-  const { helper } = context;
-  const keyProperty = createObjectProperty(`key`, createSimpleExpression(
-    `${keyIndex}`,
-    false,
-    locStub,
-    2
-    /* ConstantTypes.CAN_HOIST */
-  ));
-  const { children } = branch;
-  const firstChild = children[0];
-  const needFragmentWrapper = children.length !== 1 || firstChild.type !== 1;
-  if (needFragmentWrapper) {
-    if (children.length === 1 && firstChild.type === 11) {
-      const vnodeCall = firstChild.codegenNode;
-      injectProp(vnodeCall, keyProperty, context);
-      return vnodeCall;
-    } else {
-      let patchFlag = 64;
-      let patchFlagText = PatchFlagNames[
-        64
-        /* PatchFlags.STABLE_FRAGMENT */
-      ];
-      if (!branch.isTemplateIf && children.filter(
-        (c) => c.type !== 3
-        /* NodeTypes.COMMENT */
-      ).length === 1) {
-        patchFlag |= 2048;
-        patchFlagText += `, ${PatchFlagNames[
-          2048
-          /* PatchFlags.DEV_ROOT_FRAGMENT */
-        ]}`;
-      }
-      return createVNodeCall(context, helper(FRAGMENT), createObjectExpression([keyProperty]), children, patchFlag + (true ? ` /* ${patchFlagText} */` : ``), void 0, void 0, true, false, false, branch.loc);
-    }
-  } else {
-    const ret = firstChild.codegenNode;
-    const vnodeCall = getMemoedVNodeCall(ret);
-    if (vnodeCall.type === 13) {
-      makeBlock(vnodeCall, context);
-    }
-    injectProp(vnodeCall, keyProperty, context);
-    return ret;
-  }
-}
-function isSameKey(a, b) {
-  if (!a || a.type !== b.type) {
-    return false;
-  }
-  if (a.type === 6) {
-    if (a.value.content !== b.value.content) {
-      return false;
-    }
-  } else {
-    const exp = a.exp;
-    const branchExp = b.exp;
-    if (exp.type !== branchExp.type) {
-      return false;
-    }
-    if (exp.type !== 4 || exp.isStatic !== branchExp.isStatic || exp.content !== branchExp.content) {
-      return false;
-    }
-  }
-  return true;
-}
-function getParentCondition(node) {
-  while (true) {
-    if (node.type === 19) {
-      if (node.alternate.type === 19) {
-        node = node.alternate;
-      } else {
-        return node;
-      }
-    } else if (node.type === 20) {
-      node = node.value;
-    }
-  }
-}
-var transformFor = createStructuralDirectiveTransform("for", (node, dir, context) => {
-  const { helper, removeHelper } = context;
-  return processFor(node, dir, context, (forNode) => {
-    const renderExp = createCallExpression(helper(RENDER_LIST), [
-      forNode.source
-    ]);
-    const isTemplate = isTemplateNode(node);
-    const memo = findDir(node, "memo");
-    const keyProp = findProp(node, `key`);
-    const keyExp = keyProp && (keyProp.type === 6 ? createSimpleExpression(keyProp.value.content, true) : keyProp.exp);
-    const keyProperty = keyProp ? createObjectProperty(`key`, keyExp) : null;
-    const isStableFragment = forNode.source.type === 4 && forNode.source.constType > 0;
-    const fragmentFlag = isStableFragment ? 64 : keyProp ? 128 : 256;
-    forNode.codegenNode = createVNodeCall(context, helper(FRAGMENT), void 0, renderExp, fragmentFlag + (true ? ` /* ${PatchFlagNames[fragmentFlag]} */` : ``), void 0, void 0, true, !isStableFragment, false, node.loc);
-    return () => {
-      let childBlock;
-      const { children } = forNode;
-      if (isTemplate) {
-        node.children.some((c) => {
-          if (c.type === 1) {
-            const key = findProp(c, "key");
-            if (key) {
-              context.onError(createCompilerError(33, key.loc));
-              return true;
-            }
-          }
-        });
-      }
-      const needFragmentWrapper = children.length !== 1 || children[0].type !== 1;
-      const slotOutlet = isSlotOutlet(node) ? node : isTemplate && node.children.length === 1 && isSlotOutlet(node.children[0]) ? node.children[0] : null;
-      if (slotOutlet) {
-        childBlock = slotOutlet.codegenNode;
-        if (isTemplate && keyProperty) {
-          injectProp(childBlock, keyProperty, context);
-        }
-      } else if (needFragmentWrapper) {
-        childBlock = createVNodeCall(
-          context,
-          helper(FRAGMENT),
-          keyProperty ? createObjectExpression([keyProperty]) : void 0,
-          node.children,
-          64 + (true ? ` /* ${PatchFlagNames[
-            64
-            /* PatchFlags.STABLE_FRAGMENT */
-          ]} */` : ``),
-          void 0,
-          void 0,
-          true,
-          void 0,
-          false
-          /* isComponent */
-        );
-      } else {
-        childBlock = children[0].codegenNode;
-        if (isTemplate && keyProperty) {
-          injectProp(childBlock, keyProperty, context);
-        }
-        if (childBlock.isBlock !== !isStableFragment) {
-          if (childBlock.isBlock) {
-            removeHelper(OPEN_BLOCK);
-            removeHelper(getVNodeBlockHelper(context.inSSR, childBlock.isComponent));
-          } else {
-            removeHelper(getVNodeHelper(context.inSSR, childBlock.isComponent));
-          }
-        }
-        childBlock.isBlock = !isStableFragment;
-        if (childBlock.isBlock) {
-          helper(OPEN_BLOCK);
-          helper(getVNodeBlockHelper(context.inSSR, childBlock.isComponent));
-        } else {
-          helper(getVNodeHelper(context.inSSR, childBlock.isComponent));
-        }
-      }
-      if (memo) {
-        const loop = createFunctionExpression(createForLoopParams(forNode.parseResult, [
-          createSimpleExpression(`_cached`)
-        ]));
-        loop.body = createBlockStatement([
-          createCompoundExpression([`const _memo = (`, memo.exp, `)`]),
-          createCompoundExpression([
-            `if (_cached`,
-            ...keyExp ? [` && _cached.key === `, keyExp] : [],
-            ` && ${context.helperString(IS_MEMO_SAME)}(_cached, _memo)) return _cached`
-          ]),
-          createCompoundExpression([`const _item = `, childBlock]),
-          createSimpleExpression(`_item.memo = _memo`),
-          createSimpleExpression(`return _item`)
-        ]);
-        renderExp.arguments.push(loop, createSimpleExpression(`_cache`), createSimpleExpression(String(context.cached++)));
-      } else {
-        renderExp.arguments.push(createFunctionExpression(
-          createForLoopParams(forNode.parseResult),
-          childBlock,
-          true
-          /* force newline */
-        ));
-      }
-    };
-  });
-});
-function processFor(node, dir, context, processCodegen) {
-  if (!dir.exp) {
-    context.onError(createCompilerError(31, dir.loc));
-    return;
-  }
-  const parseResult = parseForExpression(
-    // can only be simple expression because vFor transform is applied
-    // before expression transform.
-    dir.exp,
-    context
-  );
-  if (!parseResult) {
-    context.onError(createCompilerError(32, dir.loc));
-    return;
-  }
-  const { addIdentifiers, removeIdentifiers, scopes } = context;
-  const { source: source2, value, key, index } = parseResult;
-  const forNode = {
-    type: 11,
-    loc: dir.loc,
-    source: source2,
-    valueAlias: value,
-    keyAlias: key,
-    objectIndexAlias: index,
-    parseResult,
-    children: isTemplateNode(node) ? node.children : [node]
-  };
-  context.replaceNode(forNode);
-  scopes.vFor++;
-  const onExit = processCodegen && processCodegen(forNode);
-  return () => {
-    scopes.vFor--;
-    if (onExit)
-      onExit();
-  };
-}
-var forAliasRE = /([\s\S]*?)\s+(?:in|of)\s+([\s\S]*)/;
-var forIteratorRE = /,([^,\}\]]*)(?:,([^,\}\]]*))?$/;
-var stripParensRE = /^\(|\)$/g;
-function parseForExpression(input, context) {
-  const loc = input.loc;
-  const exp = input.content;
-  const inMatch = exp.match(forAliasRE);
-  if (!inMatch)
-    return;
-  const [, LHS, RHS] = inMatch;
-  const result = {
-    source: createAliasExpression(loc, RHS.trim(), exp.indexOf(RHS, LHS.length)),
-    value: void 0,
-    key: void 0,
-    index: void 0
-  };
-  if (true) {
-    validateBrowserExpression(result.source, context);
-  }
-  let valueContent = LHS.trim().replace(stripParensRE, "").trim();
-  const trimmedOffset = LHS.indexOf(valueContent);
-  const iteratorMatch = valueContent.match(forIteratorRE);
-  if (iteratorMatch) {
-    valueContent = valueContent.replace(forIteratorRE, "").trim();
-    const keyContent = iteratorMatch[1].trim();
-    let keyOffset;
-    if (keyContent) {
-      keyOffset = exp.indexOf(keyContent, trimmedOffset + valueContent.length);
-      result.key = createAliasExpression(loc, keyContent, keyOffset);
-      if (true) {
-        validateBrowserExpression(result.key, context, true);
-      }
-    }
-    if (iteratorMatch[2]) {
-      const indexContent = iteratorMatch[2].trim();
-      if (indexContent) {
-        result.index = createAliasExpression(loc, indexContent, exp.indexOf(indexContent, result.key ? keyOffset + keyContent.length : trimmedOffset + valueContent.length));
-        if (true) {
-          validateBrowserExpression(result.index, context, true);
-        }
-      }
-    }
-  }
-  if (valueContent) {
-    result.value = createAliasExpression(loc, valueContent, trimmedOffset);
-    if (true) {
-      validateBrowserExpression(result.value, context, true);
-    }
-  }
-  return result;
-}
-function createAliasExpression(range, content2, offset) {
-  return createSimpleExpression(content2, false, getInnerRange(range, offset, content2.length));
-}
-function createForLoopParams({ value, key, index }, memoArgs = []) {
-  return createParamsList([value, key, index, ...memoArgs]);
-}
-function createParamsList(args2) {
-  let i = args2.length;
-  while (i--) {
-    if (args2[i])
-      break;
-  }
-  return args2.slice(0, i + 1).map((arg, i2) => arg || createSimpleExpression(`_`.repeat(i2 + 1), false));
-}
-var defaultFallback = createSimpleExpression(`undefined`, false);
-true ? Object.freeze({}) : {};
-true ? Object.freeze([]) : [];
-var cacheStringFunction2 = (fn) => {
-  const cache = /* @__PURE__ */ Object.create(null);
-  return (str) => {
-    const hit = cache[str];
-    return hit || (cache[str] = fn(str));
-  };
-};
-var camelizeRE2 = /-(\w)/g;
-var camelize2 = cacheStringFunction2((str) => {
-  return str.replace(camelizeRE2, (_, c) => c ? c.toUpperCase() : "");
-});
+new RegExp("\\b" + "arguments,await,break,case,catch,class,const,continue,debugger,default,delete,do,else,export,extends,finally,for,function,if,import,let,new,return,super,switch,throw,try,var,void,while,with,yield".split(",").join("\\b|\\b") + "\\b");
 
 // src/docs/sourceDecorator.ts
 var import_lodash = __toESM(require_lodash());
-import { h, isVNode, watch } from "vue";
 
 // src/docs/utils.ts
 var omitEvent = (args2) => args2 ? Object.fromEntries(Object.entries(args2).filter(([key, value]) => !key.startsWith("on"))) : {};
 var displayObject = (obj) => {
-  console.log(obj);
   if (obj && typeof obj === "object") {
     return `{${Object.keys(obj).map((key) => `${key}:${displayObject(obj[key])}`).join(",")}}`;
   }
@@ -7624,15 +6721,25 @@ var attributeSource = (key, value, dynamic) => (
 );
 var evalExp = (argExpValue, args2) => {
   let evalVal = argExpValue;
-  if (/v-bind="(\w+)"/.test(evalVal))
+  if (evalVal && /v-bind="(\w+)"/.test(evalVal))
     return evalVal.replace(/"(\w+)"/g, `"${displayObject(args2)}"`);
   Object.keys(args2).forEach((akey) => {
-    const regexMatch = new RegExp(`(\\w+)\\.${akey}\\(?`, "g");
+    const regexMatch = new RegExp(`(\\w+)\\.${akey}`, "g");
     const regexTarget = new RegExp(`(\\w+)\\.${akey}`, "g");
-    if (regexMatch.test(evalVal))
+    if (regexMatch.test(evalVal)) {
       evalVal = evalVal.replace(regexTarget, displayObject(args2[akey]));
+    }
   });
   return evalVal;
+};
+var replaceValueWithRef = (source2, args2, ref) => {
+  const value = ref ? args2[ref] : "args";
+  const bindValue = () => {
+    const argsRef = Object.fromEntries(Object.entries(args2).map(([key]) => [key, key]));
+    return displayObject(argsRef).replace(/'/g, "");
+  };
+  const regexMatch = new RegExp(`="${value}"`, "g");
+  return source2.replace(regexMatch, `="${ref ?? bindValue()}"`);
 };
 function generateExpression(slot) {
   let body = slot.toString().split("=>")[1].trim().replace("return", "").trim();
@@ -7654,7 +6761,9 @@ var skipSourceRender = (context) => {
 };
 function generateAttributesSource(tempArgs, args2, argTypes2, byRef2) {
   return Object.keys(tempArgs).map((key) => {
-    return evalExp(tempArgs[key].loc.source.replace(/\$props/g, "args"), omitEvent(args2));
+    const source2 = tempArgs[key].loc.source.replace(/\$props/g, "args");
+    const argKey = tempArgs[key].arg?.loc.source;
+    return byRef2 && argKey ? replaceValueWithRef(source2, args2, argKey) : evalExp(source2, omitEvent(args2));
   }).join(" ");
 }
 function mapAttributesAndDirectives(props) {
@@ -7791,8 +6900,8 @@ function generateSource(context) {
   const { args: args2 = {}, argTypes: argTypes2 = {}, id } = context || {};
   const storyComponents = getTemplateComponents(context?.originalStoryFn, context);
   const withScript = context?.parameters?.docs?.source?.withScriptSetup || false;
-  const generatedScript = withScript ? generateScriptSetup(args2, argTypes2, storyComponents) : "";
-  const generatedTemplate = generateTemplateSource(storyComponents, context);
+  const generatedScript = withScript ? generateScriptSetup(args2) : "";
+  const generatedTemplate = generateTemplateSource(storyComponents, context, withScript);
   if (generatedTemplate) {
     const source2 = `${generatedScript}
  <template>
@@ -7817,11 +6926,5 @@ var argTypesEnhancers = [enhanceArgTypes];
 
 // src/config.ts
 var parameters2 = { renderer: "vue3", ...parameters };
-export {
-  decorateStory as applyDecorators,
-  argTypesEnhancers,
-  decorators,
-  parameters2 as parameters,
-  render,
-  renderToCanvas
-};
+
+export { argTypesEnhancers, decorators, parameters2 as parameters };

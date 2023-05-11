@@ -43,10 +43,12 @@ function normalizeFunctionalComponent(options) {
   return typeof options === "function" ? { render: options, name: options.name } : options;
 }
 function prepare(rawStory, innerStory) {
-  const story = normalizeFunctionalComponent(rawStory);
-  if (story == null) {
+  const story = rawStory;
+  if (story === null) {
     return null;
   }
+  if (typeof story === "function")
+    return story;
   if (innerStory) {
     return {
       // Normalize so we can always spread an object
@@ -63,25 +65,20 @@ function prepare(rawStory, innerStory) {
 function decorateStory(storyFn, decorators) {
   return decorators.reduce(
     (decorated, decorator) => (context) => {
-      let story = { isNull: true };
+      let story;
       const decoratedStory = decorator((update) => {
         story = decorated({
           ...context,
           ...(0, import_preview_api.sanitizeStoryContextUpdate)(update)
         });
-        const argsChanged = update && update.args && Object.keys(update).length === 1 && !(0, import_vue.isVNode)(story);
-        if (argsChanged) {
-          story = (0, import_vue.h)(story, update.args);
-        }
         return story;
       }, context);
-      if (story.isNull)
+      if (!story)
         story = decorated(context);
       if (decoratedStory === story) {
         return story;
       }
-      const props = story.props ?? context.args;
-      const innerStory = () => (0, import_vue.h)(story, props);
+      const innerStory = () => (0, import_vue.h)(story);
       return prepare(decoratedStory, innerStory);
     },
     (context) => prepare(storyFn(context))
@@ -97,7 +94,7 @@ var render = (props, context) => {
       `Unable to render story ${id} as the component annotation is missing from the default export`
     );
   }
-  return (0, import_vue2.h)(Component, props, generateSlots(context));
+  return () => (0, import_vue2.h)(Component, props, generateSlots(context));
 };
 var setupFunctions = /* @__PURE__ */ new Set();
 var setup = (fn) => {
@@ -111,7 +108,8 @@ function renderToCanvas({ storyFn, forceRemount, showMain, showException, storyC
   const existingApp = map.get(canvasElement);
   if (existingApp && !forceRemount) {
     const element = storyFn();
-    updateArgs(existingApp.reactiveArgs, element.props ?? storyContext.args);
+    const args = getArgs(element, storyContext);
+    updateArgs(existingApp.reactiveArgs, args);
     return () => {
       teardown(existingApp.vueApp, canvasElement);
     };
@@ -122,13 +120,14 @@ function renderToCanvas({ storyFn, forceRemount, showMain, showException, storyC
     setup() {
       storyContext.args = (0, import_vue2.reactive)(storyContext.args);
       const rootElement = storyFn();
+      const args = getArgs(rootElement, storyContext);
       const appState = {
         vueApp,
-        reactiveArgs: (0, import_vue2.reactive)(rootElement.props ?? storyContext.args)
+        reactiveArgs: (0, import_vue2.reactive)(args)
       };
       map.set(canvasElement, appState);
       return () => {
-        return (0, import_vue2.h)(rootElement, appState.reactiveArgs);
+        return (0, import_vue2.h)(rootElement);
       };
     }
   });
@@ -150,6 +149,9 @@ function generateSlots(context) {
     return [key, typeof slotValue === "function" ? slotValue : () => slotValue];
   });
   return (0, import_vue2.reactive)(Object.fromEntries(slots));
+}
+function getArgs(element, storyContext) {
+  return element.props && (0, import_vue2.isVNode)(element) ? element.props : storyContext.args;
 }
 function updateArgs(reactiveArgs, nextArgs) {
   if (Object.keys(nextArgs).length === 0)
@@ -182,7 +184,8 @@ var { raw } = api.clientApi;
 
 // src/index.ts
 var _a;
-(_a = module == null ? void 0 : module.hot) == null ? void 0 : _a.decline();
+if (typeof module !== "undefined")
+  (_a = module == null ? void 0 : module.hot) == null ? void 0 : _a.decline();
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   configure,

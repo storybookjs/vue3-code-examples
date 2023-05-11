@@ -3,7 +3,7 @@ import GlobalUsage from './GlobalUsage.vue';
 export default {
   component: GlobalUsage,
   argTypes: {},
-  render: (args) => ({
+  render: (args: any) => ({
     // Components used in your story `template` are defined in the `components` object
     components: { GlobalUsage },
     // The story's `args` need to be mapped into the template through the `setup()` method
