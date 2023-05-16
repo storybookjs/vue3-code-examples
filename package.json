@@ -38,8 +38,5 @@
     "vite-plugin-vuetify": "^1.0.2",
     "vue-tsc": "^1.0.24"
   },
-  "packageManager": "yarn@3.5.0",
-  "resolutions": {
-    "@storybook/vue3": "portal:./code/renderers/vue3"
-  }
+  "packageManager": "yarn@3.5.0"
 }
