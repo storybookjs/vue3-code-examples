@@ -67,5 +67,5 @@ export const globalTypes = {
   },
 };
 
-export const decorators = [withVuetifyTheme]
+export const decorators = []
 export default preview;

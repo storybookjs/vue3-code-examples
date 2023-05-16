@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 import MyVueButton from './VButton';
+import { withVuetifyTheme } from '../../.storybook/withVuetifyTheme.decorator'
 
 
 const meta = {
@@ -22,6 +23,7 @@ const meta = {
   },
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/7.0/vue/writing-docs/docs-page
   tags: ['autodocs'],
+  decorators:[withVuetifyTheme]
 } satisfies Meta<typeof MyVueButton>;
 
 export default meta;
