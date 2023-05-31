@@ -23,28 +23,59 @@ pnpm install vuetify sass sass-loader deepmerge -D
 2. Include Vuetify in your Vue app by creating a `vuetify.js` file and adding the following content:
 
 ```javascript
-import Vue from 'vue'
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
+// Styles
+import '@mdi/font/css/materialdesignicons.css'
+import 'vuetify/styles'
 
-Vue.use(Vuetify)
+// Composables
+import { createVuetify } from 'vuetify'
+import { aliases, mdi } from 'vuetify/iconsets/mdi'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
 
-export default new Vuetify({
-  theme: { }
+// https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
+export default createVuetify({
+  icons: {
+    defaultSet: 'mdi',
+    aliases,
+    sets: {
+      mdi,
+    },
+  },
+  theme: {
+    themes: {
+      light: {
+        colors: {
+          primary: '#1867C0',
+          secondary: '#5CBBF6',
+        },
+      },
+    },
+  },
+  components,
+  directives,
 })
+
 ```
 
-3. Import the Vuetify file in your main.js::
+3. Import the Vuetify file in your preview.js::
 
 ```javascript
-import Vue from 'vue'
-import App from './App.vue'
-import vuetify from './plugins/vuetify'
+mport  { setup }  from '@storybook/vue3';
+import type { App } from 'vue'
 
-new Vue({
-  render: h => h(App),
-  vuetify
-}).$mount('#app')
+import vuetify from '../src/plugins/vuetify'
+import { loadFonts } from '../src/plugins/webfontloader'
+
+loadFonts()
+
+setup((app:App) => {
+  app.use(vuetify);
+})
+
+// you can define global your Vuetify decorators
+export const decorators = [withVuetifyTheme]
+
 ```
 #Running Storybook
 
