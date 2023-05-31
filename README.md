@@ -20,7 +20,7 @@ This project is already set up to work with Vuetify. To add Vuetify in your own 
 pnpm install vuetify sass sass-loader deepmerge -D
 
 
-2. Include Vuetify in your Vue app by creating a `vuetify.js` file and adding the following content:
+2. Create Vuetify plugin by creating a `vuetify.js` file and adding the following content:
 
 ```javascript
 // Styles
@@ -61,7 +61,7 @@ export default createVuetify({
 3. Import the Vuetify file in your preview.js::
 
 ```javascript
-mport  { setup }  from '@storybook/vue3';
+import  { setup }  from '@storybook/vue3';
 import type { App } from 'vue'
 
 import vuetify from '../src/plugins/vuetify'
@@ -80,7 +80,6 @@ export const decorators = [withVuetifyTheme]
 #Running Storybook
 
 To run the project, use the following command:
-Import the Vuetify file in your main.js:
 
 ```
 pnpm storybook
