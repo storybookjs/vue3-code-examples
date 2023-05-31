@@ -7,7 +7,7 @@ This repository contains a collection of story examples which can be used as a r
 To get started with the project, simply clone the repository and install the dependencies using the following command:
 
 
-pnpm install
+`pnpm install`
 
 
 ### Adding Vuetify
