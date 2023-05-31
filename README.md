@@ -1,18 +1,54 @@
-# Vue 3 + TypeScript + Vite
+# Storybook Examples with Vuetify Integration
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This repository contains a collection of story examples which can be used as a reference while developing Vue.js applications with Vuetify library.
 
-## Recommended IDE Setup
+## Getting Started
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+To get started with the project, simply clone the repository and install the dependencies using the following command:
 
-## Type Support For `.vue` Imports in TS
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+pnpm install
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+### Adding Vuetify
+
+This project is already set up to work with Vuetify. To add Vuetify in your own project, you can follow these steps:
+
+1. Install Vuetify and its dependencies using `pnpm`:
+
+
+pnpm install vuetify sass sass-loader deepmerge -D
+
+
+2. Include Vuetify in your Vue app by creating a `vuetify.js` file and adding the following content:
+
+```javascript
+import Vue from 'vue'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
+
+Vue.use(Vuetify)
+
+export default new Vuetify({
+  theme: { }
+})
+
+Import the Vuetify file in your main.js:
+import Vue from 'vue'
+import App from './App.vue'
+import vuetify from './plugins/vuetify'
+
+new Vue({
+  render: h => h(App),
+  vuetify
+}).$mount('#app')
+
+Running Storybook
+
+To run the project, use the following command:
+
+pnpm storybook
+
+Maintainer
+
+For any queries or suggestions related to this project, please feel free to reach out to the maintainer at javachakir@gmail.com. ```
