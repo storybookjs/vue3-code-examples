@@ -32,8 +32,11 @@ Vue.use(Vuetify)
 export default new Vuetify({
   theme: { }
 })
+```
 
-Import the Vuetify file in your main.js:
+3. Import the Vuetify file in your main.js::
+
+```javascript
 import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify'
@@ -42,13 +45,16 @@ new Vue({
   render: h => h(App),
   vuetify
 }).$mount('#app')
-
-Running Storybook
+```
+#Running Storybook
 
 To run the project, use the following command:
+Import the Vuetify file in your main.js:
 
+```
 pnpm storybook
+```
 
-Maintainer
+#Maintainer
 
-For any queries or suggestions related to this project, please feel free to reach out to the maintainer at javachakir@gmail.com. ```
+For any queries or suggestions related to this project, please feel free to reach out to the maintainer at javachakir@gmail.com. 
