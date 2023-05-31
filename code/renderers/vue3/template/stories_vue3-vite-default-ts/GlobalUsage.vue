@@ -1,3 +1,0 @@
-<template>
-  <global-button />
-</template>

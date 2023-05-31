@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 
-import MyVueButton from './VButton';
+import MyVueButton from './VButton.vue';
 import { withVuetifyTheme } from '../../.storybook/withVuetifyTheme.decorator'
 
 

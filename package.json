@@ -1,42 +1,38 @@
 {
-  "name": "vue3-storybook-examples",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview",
-    "storybook": "NODE_OPTIONS=\"--preserve-symlinks --preserve-symlinks-main\" STORYBOOK_TELEMETRY_URL=\"http://localhost:6007/event-log\" storybook dev -p 6006",
-    "build-storybook": "NODE_OPTIONS=\"--preserve-symlinks --preserve-symlinks-main\" STORYBOOK_TELEMETRY_URL=\"http://localhost:6007/event-log\" storybook build"
-  },
-  "dependencies": {
-    "@mdi/font": "7.0.96",
-    "@types/node": "16",
-    "gsap": "^3.11.4",
-    "roboto-fontface": "*",
-    "vue": "^3.2.47",
-    "vuetify": "^3.1.12",
-    "webfontloader": "^1.0.0"
-  },
-  "devDependencies": {
-    "@storybook/addon-essentials": "^7.1.0-alpha.13",
-    "@storybook/addon-interactions": "^7.1.0-alpha.13",
-    "@storybook/addon-links": "^7.1.0-alpha.13",
-    "@storybook/blocks": "^7.1.0-alpha.13",
-    "@storybook/jest": "^0.0.10",
-    "@storybook/test-runner": "next",
-    "@storybook/testing-library": "next",
-    "@storybook/vue3": "^7.1.0-alpha.13",
-    "@storybook/vue3-vite": "^7.1.0-alpha.13",
-    "@vitejs/plugin-vue": "^4.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "storybook": "^7.1.0-alpha.13",
-    "typescript": "^4.9.3",
-    "vite": "^4.1.0",
-    "vite-plugin-vuetify": "^1.0.2",
-    "vue-tsc": "^1.0.24"
-  },
-  "packageManager": "yarn@3.5.0"
+    "name": "vue3-code-examples",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vue-tsc && vite build",
+        "preview": "vite preview",
+        "storybook": "storybook dev -p 6006",
+        "build-storybook": "storybook build"
+    },
+    "dependencies": {
+        "@mdi/font": "7.0.96",
+        "gsap": "^3.11.4",
+        "roboto-fontface": "*",
+        "vue": "^3.2.47",
+        "vuetify": "^3.1.12",
+        "webfontloader": "^1.0.0"
+    },
+    "devDependencies": {
+        "@storybook/addon-essentials": "^7.0.18",
+        "@storybook/addon-interactions": "^7.0.18",
+        "@storybook/addon-links": "^7.0.18",
+        "@storybook/blocks": "^7.0.18",
+        "@storybook/testing-library": "^0.0.14-next.2",
+        "@storybook/vue3": "^7.0.18",
+        "@storybook/vue3-vite": "^7.0.18",
+        "@vitejs/plugin-vue": "^4.1.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "storybook": "^7.0.18",
+        "typescript": "^5.0.2",
+        "vite": "^4.3.9",
+        "vite-plugin-vuetify": "^1.0.2",
+        "vue-tsc": "^1.4.2"
+    }
 }
