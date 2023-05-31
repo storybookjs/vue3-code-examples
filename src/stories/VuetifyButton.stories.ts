@@ -9,7 +9,7 @@ const meta = {
    * See https://storybook.js.org/docs/7.0/vue/configure/overview#configure-story-loading
    * to learn how to generate automatic titles
    */
-  title: 'Example/VuetifyButton',
+  title: 'Vuetify/VuetifyButton',
   component: MyVueButton,
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/7.0/react/configure/story-layout
