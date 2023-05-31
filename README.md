@@ -87,4 +87,4 @@ pnpm storybook
 
 ### Maintainer
 
-For any queries or suggestions related to this project, please feel free to reach out to the maintainer at javachakir@gmail.com. 
+For any queries or suggestions related to this project, please feel free to reach out to the maintainer at javachakir@gmail.com or on Discord at Chak-As3#7479
