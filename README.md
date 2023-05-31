@@ -77,7 +77,7 @@ setup((app:App) => {
 export const decorators = [withVuetifyTheme]
 
 ```
-## Running Storybook
+### Running Storybook
 
 To run the project, use the following command:
 
@@ -85,6 +85,6 @@ To run the project, use the following command:
 pnpm storybook
 ```
 
-#Maintainer
+### Maintainer
 
 For any queries or suggestions related to this project, please feel free to reach out to the maintainer at javachakir@gmail.com. 
