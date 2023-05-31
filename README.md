@@ -77,7 +77,7 @@ setup((app:App) => {
 export const decorators = [withVuetifyTheme]
 
 ```
-#Running Storybook
+## Running Storybook
 
 To run the project, use the following command:
 
