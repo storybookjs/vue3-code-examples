@@ -30,6 +30,10 @@ setup((app:App) => {
   app.use(vuetify);
 })
 
+setup((app:App) => {
+  app.config.globalProperties.$XYZ = 'XYZ'
+})
+
 export const globalTypes = {
   theme: {
     name: 'Theme',

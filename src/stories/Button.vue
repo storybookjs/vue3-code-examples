@@ -2,7 +2,9 @@
   <button type="button" :class="classes" @click="onClick" :style="style">
     <slot name="icon"></slot> {{ label }} <slot></slot>
     <slot name="BoxComponent"></slot>
+    <div>{{ $XYZ }}</div>
   </button>
+  
 </template>
 
 <script lang="ts" setup>
