@@ -9,6 +9,7 @@
 
 <script lang="ts" setup>
 import './button.css';
+import './decorators/anim.css'
 import { computed } from 'vue';
 
 const props = withDefaults(defineProps<{

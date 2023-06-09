@@ -94,43 +94,8 @@ export const WithRenderTemplate: Story = {
   },
 };
 
-
-
-
-type CSF2Story = StoryFn<typeof Button>;
-
-export const CSF2Button: CSF2Story = (args, { argTypes }) => ({
-  components: { Button },
-  props: Object.keys(argTypes),
-  template: '<Button v-bind="$props" ></Button>',
-})
-
-CSF2Button.args = {
-  label: 'Button',
-};
-
-WithRenderTemplate.decorators = CSF2Button.decorators =[  
+WithRenderTemplate.decorators  =[  
   () => ({
     template: '<div style="display: flex; padding: 20px; background-color: #cccc72;"><story /></div>',
   }),
 ];
-
-export const CSF2ButtonFn: CSF2Story = (args, { argTypes }) => ({
-  components: { Button },
-  props: Object.keys(argTypes),
-  template: '<Button v-bind="$props" ></Button>',
-})
-CSF2ButtonFn.args = {
-  label : 'Button'
-}
-
-CSF2ButtonFn.decorators = [
-  (storyFn,context) => {
-    // Call the `storyFn` to receive a component that Vue can render
-    const story = storyFn();
-    // Vue 3 "Functional" component as decorator
-    return () => {
-      return h('div', { style: 'border: 2px solid blue;padding:10px' }, h(story,context.args));
-    };
-  },
-]

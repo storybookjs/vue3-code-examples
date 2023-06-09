@@ -8,7 +8,7 @@ import BaseLayout from './ComponentWithSlots.vue';
 
 const meta = {
   component: BaseLayout,
-  title: 'Slots/ReactiveSlots',
+  title: 'Slots/Reactive Slots',
   args: {
     label: 'Storybook Day',
     default: () => 'Default Text Slot',

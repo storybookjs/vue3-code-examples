@@ -7,7 +7,7 @@ import Button from '../Button.vue';
 
 
 const meta = {
-  title: 'Decorators/Reactive Decorators',
+  title: 'Decorators/Conditional Decorators',
   component: Button,
   tags: ['autodocs'],
 } satisfies Meta<typeof Button>;
@@ -47,23 +47,32 @@ const DynamicWrapperWrapper  = (storyFn, { args }) => ({
   computed: { level: () => `${args.level}px` },
 });
 
-export const ComponentTemplate: Story = {
+const VueConditionalWrapperWrapper = (storyFn, context) => {
+  // Call the `storyFn` to receive a component that Vue can render
+  const story = storyFn();
+  const animated = context.args.animate ? 'animated' : 'not-animated'; 
+  console.log({animated});
+  // Vue 3 "Functional" component as decorator
+  return () => context.args.show ? h('div', { style: 'border: 10px solid black;padding: 20px' }, h(story, {...context.args,class:animated })):h(story,{ label: 'Disconnected',backgroundColor: 'gray'});
+};
+
+export const CComponentTemplate: Story = {
   args: { label: 'With component' },
   decorators: [ComponentTemplateWrapper],
 };
 
-export const SimpleTemplate: Story = {
+export const CSimpleTemplate: Story = {
   args: { label: 'With border' },
   decorators: [SimpleTemplateWrapper],
 };
 
-export const VueWrapper: Story = {
+export const CVueWrapper: Story = {
   args: { label: 'With Vue wrapper' },
   decorators: [VueWrapperWrapper],
 };
 
-export const DynamicWrapper: Story = {
-  args: { label: 'With dynamic wrapper', primary: true },
+export const CDynamicWrapper: Story = {
+  args: { label: 'With dynamic wrapper', primary: true, },
   argTypes: {
     // Number type is detected, but we still want to constrain the range from 1-6
     level: { control: { type: 'range', min: 1, max: 6 } },
@@ -71,16 +80,20 @@ export const DynamicWrapper: Story = {
   decorators: [DynamicWrapperWrapper],
 };
 
-export const MultipleWrappers = {
-  args: { label: 'With multiple wrappers' },
+
+
+export const CMultipleWrappers = {
+  args: { label: 'With multiple wrappers' , show: false , animate: false},
   argTypes: {
     // Number type is detected, but we still want to constrain the range from 1-6
     level: { control: { type: 'range', min: 1, max: 6 } },
   },
   decorators: [
+    VueConditionalWrapperWrapper,
     ComponentTemplateWrapper,
     SimpleTemplateWrapper,
     VueWrapperWrapper,
     DynamicWrapperWrapper,
   ],
 };
+

@@ -40,7 +40,7 @@
     },
     "pnpm": {
         "overrides": {
-            "@storybook/vue3": "npm:@javachakir/vue3@latest"
+            "@storybook/vue3": "npm:@javachakir/vue3@7.1.0-alpha.29.1"
         }
     }
 }

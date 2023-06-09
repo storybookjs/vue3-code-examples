@@ -1,7 +1,7 @@
 lockfileVersion: '6.0'
 
 overrides:
-  '@storybook/vue3': npm:@javachakir/vue3@latest
+  '@storybook/vue3': npm:@javachakir/vue3@7.1.0-alpha.29.1
 
 dependencies:
   '@mdi/font':
@@ -49,11 +49,11 @@ devDependencies:
     specifier: 7.1.0-alpha.29
     version: 7.1.0-alpha.29
   '@storybook/vue3':
-    specifier: npm:@javachakir/vue3@latest
-    version: /@javachakir/vue3@7.1.0-alpha.29(vue@3.3.4)
+    specifier: npm:@javachakir/vue3@7.1.0-alpha.29.1
+    version: /@javachakir/vue3@7.1.0-alpha.29.1(lodash@4.17.21)(vue@3.3.4)
   '@storybook/vue3-vite':
     specifier: ^7.1.0-alpha.29
-    version: 7.1.0-alpha.29(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4)(vite@4.3.9)(vue@3.3.4)
+    version: 7.1.0-alpha.29(lodash@4.17.21)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4)(vite@4.3.9)(vue@3.3.4)
   '@vitejs/plugin-vue':
     specifier: ^4.1.0
     version: 4.2.3(vite@4.3.9)(vue@3.3.4)
@@ -1666,10 +1666,11 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /@javachakir/vue3@7.1.0-alpha.29(vue@3.3.4):
-    resolution: {integrity: sha512-+Cf/nBdiZeLmMnIxhBk+7fzLoJ5Ags5PSKDTbwSLEgKp432cJ6LE474vrnrf9H4RL+FewJR+Naf3pSmK0Gtjwg==}
+  /@javachakir/vue3@7.1.0-alpha.29.1(lodash@4.17.21)(vue@3.3.4):
+    resolution: {integrity: sha512-eSAGBMnpbYH61odkqnHYHienc76h1NzsQlvnTqs4lNh2CJk237fLjohNOwRzgUJO5Bn72YOhmCnPSFYS1Dm5cQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
+      lodash: '*'
       vue: ^3.0.0
     dependencies:
       '@storybook/core-client': 7.1.0-alpha.29
@@ -1677,6 +1678,7 @@ packages:
       '@storybook/global': 5.0.0
       '@storybook/preview-api': 7.1.0-alpha.29
       '@storybook/types': 7.1.0-alpha.29
+      lodash: 4.17.21
       ts-dedent: 2.2.0
       type-fest: 3.11.1
       vue: 3.3.4
@@ -2696,7 +2698,7 @@ packages:
       file-system-cache: 2.3.0
     dev: true
 
-  /@storybook/vue3-vite@7.1.0-alpha.29(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4)(vite@4.3.9)(vue@3.3.4):
+  /@storybook/vue3-vite@7.1.0-alpha.29(lodash@4.17.21)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4)(vite@4.3.9)(vue@3.3.4):
     resolution: {integrity: sha512-zwpWOQG1L0heoyhZ4YdP1a9CsY7yqviOdnXOOhwu2CCOSCzaKtwdtQR5Wz8l3iBRqDkuGU922R72LrLt18otRQ==}
     engines: {node: ^14.18 || >=16}
     peerDependencies:
@@ -2706,7 +2708,7 @@ packages:
     dependencies:
       '@storybook/builder-vite': 7.1.0-alpha.29(typescript@5.0.4)(vite@4.3.9)
       '@storybook/core-server': 7.1.0-alpha.29
-      '@storybook/vue3': /@javachakir/vue3@7.1.0-alpha.29(vue@3.3.4)
+      '@storybook/vue3': /@javachakir/vue3@7.1.0-alpha.29.1(lodash@4.17.21)(vue@3.3.4)
       '@vitejs/plugin-vue': 4.2.3(vite@4.3.9)(vue@3.3.4)
       magic-string: 0.27.0
       react: 18.2.0
@@ -2717,6 +2719,7 @@ packages:
       - '@preact/preset-vite'
       - bufferutil
       - encoding
+      - lodash
       - supports-color
       - typescript
       - utf-8-validate
