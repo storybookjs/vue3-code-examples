@@ -21,18 +21,18 @@
         "webfontloader": "^1.0.0"
     },
     "devDependencies": {
-        "@storybook/addon-essentials": "^7.1.0-alpha.29",
-        "@storybook/addon-interactions": "^7.1.0-alpha.29",
-        "@storybook/addon-links": "^7.1.0-alpha.29",
-        "@storybook/blocks": "^7.1.0-alpha.29",
+        "@storybook/addon-essentials": "^7.1.0-alpha.30",
+        "@storybook/addon-interactions": "^7.1.0-alpha.30",
+        "@storybook/addon-links": "^7.1.0-alpha.30",
+        "@storybook/blocks": "^7.1.0-alpha.30",
         "@storybook/testing-library": "^0.0.14-next.2",
-        "@storybook/types": "7.1.0-alpha.29",
-        "@storybook/vue3": "^7.1.0-alpha.29",
-        "@storybook/vue3-vite": "^7.1.0-alpha.29",
+        "@storybook/types": "7.1.0-alpha.30",
+        "@storybook/vue3": "^7.1.0-alpha.30",
+        "@storybook/vue3-vite": "^7.1.0-alpha.30",
         "@vitejs/plugin-vue": "^4.1.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "storybook": "^7.1.0-alpha.29",
+        "storybook": "^7.1.0-alpha.30",
         "typescript": "^5.0.2",
         "vite": "^4.3.9",
         "vite-plugin-vuetify": "^1.0.2",
@@ -40,7 +40,7 @@
     },
     "pnpm": {
         "overrides": {
-            "@storybook/vue3": "npm:@javachakir/vue3@7.1.0-alpha.29.1"
+            "@storybook/vue3": "npm:@javachakir/vue3@7.1.0-alpha.30"
         }
     }
 }
