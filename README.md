@@ -84,6 +84,12 @@ To run the project, use the following command:
 ```
 pnpm storybook
 ```
+### Other repos shows how you can use Vue/Storybook
+
+- https://github.com/chakAs3/vue3-storybook-custom-render
+- https://github.com/chakAs3/storybook-vue3-decorators
+- https://github.com/chakAs3/vue3-storybook-slots-examples
+- https://github.com/chakAs3/vue3-pinia-storybook
 
 ### Maintainer
 
